@@ -5,8 +5,8 @@ import { Login, LoginForm } from "react-admin";
 const CustomLoginForm = props => (
   <div>
     <div style={{fontFamily: "monospace", marginLeft: '15px'}}>
-      <p>Username: fieldnation@fieldnation.com</p>
-      <p>Password: fieldnation</p>
+      <p>Username: anthony@zappin.com</p>
+      <p>Password: zappin</p>
     </div>
     <LoginForm {...props} />
   </div>
