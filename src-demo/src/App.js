@@ -4,7 +4,7 @@ import { UserList, UserShow, UserCreate, UserEdit } from "./users";
 import { Admin, Resource } from "react-admin";
 import AppHeader from "./header"
 import Stories from "./stories"
-
+import AppHtml from "./html"
 
 import {
   FirebaseRealTimeSaga,
@@ -31,11 +31,9 @@ const firebaseRealtime = FirebaseRealTimeSaga(dataProvider, options);
 class App extends React.Component {
   render() {
     return (
-      <AppHeader>
+      <AppHtml>
 
-<Stories></Stories>
-      </AppHeader>
-
+      </AppHtml>
     );
   }
 }
