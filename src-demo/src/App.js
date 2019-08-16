@@ -1,9 +1,10 @@
 import * as React from "react";
 import { PostList, PostShow, PostCreate, PostEdit } from "./posts";
 import { UserList, UserShow, UserCreate, UserEdit } from "./users";
-import AppHeader from "./header";
 import { Admin, Resource } from "react-admin";
-import 'bootstrap/dist/css/bootstrap.css';
+import AppHeader from "./header"
+import Stories from "./stories"
+
 
 import {
   FirebaseRealTimeSaga,
@@ -30,12 +31,13 @@ const firebaseRealtime = FirebaseRealTimeSaga(dataProvider, options);
 class App extends React.Component {
   render() {
     return (
-      <AppHeader></AppHeader>
+      <AppHeader>
+
+<Stories></Stories>
+      </AppHeader>
+
     );
   }
 }
 
-
-
 export default App;
-

@@ -12,7 +12,7 @@
     "redux-saga": "^0.16.0",
     "source-map-loader": "^0.2.4"
   },
-  "homepage": "https://github.com/superusercorp/the-alpha-admin",
+  "homepage": "",
   "devDependencies": {
     "concurrently": "4.1.1",
     "cpx": "1.5.0",
