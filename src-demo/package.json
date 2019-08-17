@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.3.1",
+    "bootstrap": "3.3.7",
     "ra-input-rich-text": "^2.3.0",
     "react": "^16.5.1",
     "react-admin-firebase": "^0.8.4",
