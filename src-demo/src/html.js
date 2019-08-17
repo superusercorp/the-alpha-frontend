@@ -6,7 +6,10 @@ class AppHtml extends React.Component {
     render() {
         return (
             <html id="foo" lang="en">
-                <body><AppHeader></AppHeader></body>
+                <body>
+                    <AppHeader></AppHeader>
+                    <Stories></Stories>
+                </body>
             </html>
         );
     }
