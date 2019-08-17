@@ -19,9 +19,9 @@ class Stories extends React.Component {
 						</div>
 					</div>
 
-					{/* <div class="col-md-6">
+					<div class="col-md-6">
 						<div class="post post-thumb">
-							<a class="post-img" href="blog-post.html"><img src="/img/post-2.jpg" alt="">></img></a>
+							<a class="post-img" href="blog-post.html"><img src="/img/post-2.jpg" alt=""></img></a>
 							<div class="post-body">
 								<div class="post-meta">
 									<a class="post-category cat-3" href="category.html">Attorneys</a>
@@ -31,9 +31,9 @@ class Stories extends React.Component {
 							</div>
 						</div>
 					</div>
-				</div> */}
+				</div>
 
-				{/* <div class="row">
+				<div class="row">
 					<div class="col-md-12">
 						<div class="section-title">
 							<h2>Recent Articles</h2>
@@ -77,7 +77,7 @@ class Stories extends React.Component {
 								<h3 class="post-title"><a href="blog-post.html">Ask Anthony Zappin: Does Anybody Still Use Divorce Lawyers?</a></h3>
 							</div>
 						</div>
-					</div> */}
+					</div> 
 
 					<div class="clearfix visible-md visible-lg"></div>
 
@@ -125,10 +125,6 @@ class Stories extends React.Component {
                 </div>
                 </div>
                 </div>
-               
-                
-                  
-
         );
     }
 }
