@@ -12,10 +12,12 @@ class AppHeader extends React.Component {
               </div>
 
               <ul class="nav-menu nav navbar-nav">
-							  <li><a href="category.html">News</a></li>
-             
-						  	{/* <li class="cat-1"><a href="category.html">Cases</a></li> */}
+                <li><a href="category.html">News</a></li>
+                <li><a href="category.html">Popular</a></li>
+                <li class="cat-1"><a href="category.html">Cases</a></li>
                 <li class="cat-2"><a href="category.html">Exonerations</a></li>
+                <li class="cat-3"><a href="category.html">Judges</a></li>
+                <li class="cat-4"><a href="category.html">Attorneys</a></li>
 					  	</ul>
 
               <div class="nav-btns">
