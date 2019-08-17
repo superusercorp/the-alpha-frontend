@@ -10,7 +10,6 @@ class AppHeader extends React.Component {
                 <div class="nav-logo">
                   <a href="index.html" class="logo"><img src="/img/logo.png" alt=""></img></a>
                 </div>
-                <p class="text-primary">.text-primary</p>
                 <ul class="nav-menu nav navbar-nav">
                   <li class="cat-1"><a href="category.html">News</a></li>
                   <li class="cat-2"><a href="category.html">Popular</a></li>

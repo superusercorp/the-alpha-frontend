@@ -27,5 +27,10 @@
     "deploy": "gh-pages -d build",
     "update-raf": "yarn && cpx \"../dist/**/*\" node_modules/react-admin-firebase/dist --watch --verbose",
     "replace-config": "cp ./webpack-override.js node_modules/react-scripts/config/webpack.config.dev.js && cp ./webpack-devserver-override.js node_modules/react-scripts/config/webpackDevServer.config.js"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

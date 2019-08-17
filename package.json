@@ -37,6 +37,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf dist && microbundle",
+    "commit": "./node_modules/.bin/git-cz",
     "watch": "microbundle watch",
     "start-demo": "cd src-demo && yarn start",
     "test": "jest --watchAll",
