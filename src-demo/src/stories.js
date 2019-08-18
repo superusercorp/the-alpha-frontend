@@ -1,8 +1,26 @@
 import * as React from "react";
+import Parser from 'html-react-parser';
 
 class Stories extends React.Component {
+
+	constructor(props) {
+        super(props);
+		this.state = {
+			articleTitle: [],
+		  };
+	}
+
+	componentDidMount() {
+         fetch('https://newsapi.org/v2/top-headlines?q=bitcoin&from=2019-07-17&sortBy=publishedAt&apiKey=6d709386460641adad370a9f6ecd1982')
+        .then(res => res.json())
+		.then(data => this.setState({ articleTitle: data.articles[0] }))
+        .catch(console.log);
+	  }
+
+
     render() {
-        return (
+		const { articleTitle } = this.state;
+        return (   
 		<div class="section">
 			<div class="container">
 				<div class="row">	
@@ -12,9 +30,9 @@ class Stories extends React.Component {
 							<div class="post-body">
 								<div class="post-meta">
 									<a class="post-category cat-2" href="category.html">News</a>
-									<span class="post-date">July 27, 2019</span>
+									<span class="post-date">supposed date</span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html">Judge Sentenced for Obstruction of Justice</a></h3>
+								<h3 class="post-title"><a href="blog-post.html">{articleTitle.title}</a></h3>
 							</div>
 						</div>
 					</div>
