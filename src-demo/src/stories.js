@@ -6,7 +6,9 @@ class Stories extends React.Component {
         super(props);
 		this.state = {
 			articleOne: [],
-			articleTwo: []
+			articleTwo: [],
+			articleThree: [],
+			articleFour: []
 		  };
 	}
 
@@ -14,7 +16,7 @@ class Stories extends React.Component {
          fetch('https://newsapi.org/v2/top-headlines?q=bitcoin&from=2019-07-17&sortBy=publishedAt&apiKey=6d709386460641adad370a9f6ecd1982')
         .then(res => res.json())
 		.then(
-			data => this.setState({ articleOne: data.articles[0], articleTwo: data.articles[2] })
+			data => this.setState({ articleOne: data.articles[0], articleTwo: data.articles[1], articleThree: data.articles[2], articleFour: data.articles[3] })
 			)
         .catch(console.log);
 	  }
@@ -22,6 +24,9 @@ class Stories extends React.Component {
     render() {
 		const { articleOne } = this.state;
 		const { articleTwo } = this.state;
+		const { articleThree } = this.state;
+		const { articleFour } = this.state;
+
         return (   
 		<div class="section">
 			<div class="container">
@@ -68,7 +73,7 @@ class Stories extends React.Component {
 									<a class="post-category cat-1" href="category.html">Exonerations</a>
 									<span class="post-date">March 27, 2019</span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html">{articleOne.title}</a></h3>
+								<h3 class="post-title"><a href="blog-post.html">{articleThree.title}</a></h3>
 							</div>
 						</div>
 					</div>
@@ -81,7 +86,7 @@ class Stories extends React.Component {
 									<a class="post-category cat-2" href="category.html">Cases</a>
 									<span class="post-date">March 27, 2019</span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html">{articleTwo.title}</a></h3>
+								<h3 class="post-title"><a href="blog-post.html">{articleFour.title}</a></h3>
 							</div>
 						</div>
 					</div>
