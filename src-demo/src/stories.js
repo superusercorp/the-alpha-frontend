@@ -1,25 +1,27 @@
 import * as React from "react";
-import Parser from 'html-react-parser';
 
 class Stories extends React.Component {
 
 	constructor(props) {
         super(props);
 		this.state = {
-			articleTitle: [],
+			articleOne: [],
+			articleTwo: []
 		  };
 	}
 
 	componentDidMount() {
          fetch('https://newsapi.org/v2/top-headlines?q=bitcoin&from=2019-07-17&sortBy=publishedAt&apiKey=6d709386460641adad370a9f6ecd1982')
         .then(res => res.json())
-		.then(data => this.setState({ articleTitle: data.articles[0] }))
+		.then(
+			data => this.setState({ articleOne: data.articles[0], articleTwo: data.articles[2] })
+			)
         .catch(console.log);
 	  }
 
-
     render() {
-		const { articleTitle } = this.state;
+		const { articleOne } = this.state;
+		const { articleTwo } = this.state;
         return (   
 		<div class="section">
 			<div class="container">
@@ -30,9 +32,9 @@ class Stories extends React.Component {
 							<div class="post-body">
 								<div class="post-meta">
 									<a class="post-category cat-2" href="category.html">News</a>
-									<span class="post-date">supposed date</span>
+									<span class="post-date">{articleOne.publishedAt}</span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html">{articleTitle.title}</a></h3>
+								<h3 class="post-title"><a href="blog-post.html">{articleOne.title}</a></h3>
 							</div>
 						</div>
 					</div>
@@ -45,7 +47,7 @@ class Stories extends React.Component {
 									<a class="post-category cat-3" href="category.html">Attorneys</a>
 									<span class="post-date">July 27, 2019</span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html">How Often Do Divorce Lawyers Falsify Evidence?</a></h3>
+								<h3 class="post-title"><a href="blog-post.html">{articleTwo.title}</a></h3>
 							</div>
 						</div>
 					</div>
@@ -66,7 +68,7 @@ class Stories extends React.Component {
 									<a class="post-category cat-1" href="category.html">Exonerations</a>
 									<span class="post-date">March 27, 2019</span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html">Anthony Zappin Extinguishes Collateral Estoppal</a></h3>
+								<h3 class="post-title"><a href="blog-post.html">{articleOne.title}</a></h3>
 							</div>
 						</div>
 					</div>
@@ -79,7 +81,7 @@ class Stories extends React.Component {
 									<a class="post-category cat-2" href="category.html">Cases</a>
 									<span class="post-date">March 27, 2019</span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html">Robert Wallack Cackles at Harriet Newman Cohen's Recent Transformation into a Man</a></h3>
+								<h3 class="post-title"><a href="blog-post.html">{articleTwo.title}</a></h3>
 							</div>
 						</div>
 					</div>
@@ -92,7 +94,7 @@ class Stories extends React.Component {
 									<a class="post-category cat-3" href="category.html">Attorneys</a>
 									<span class="post-date">March 27, 2019</span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html">Ask Anthony Zappin: Does Anybody Still Use Divorce Lawyers?</a></h3>
+								<h3 class="post-title"><a href="blog-post.html">{articleOne.title}</a></h3>
 							</div>
 						</div>
 					</div> 
