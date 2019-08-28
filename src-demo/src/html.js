@@ -1,19 +1,23 @@
 import * as React from "react";
 import AppHeader from "./header"
-import Stories from "./stories"
+import Stories from "./Stories/Stories"
+import StoryDetail from "./StoryDetail/StoryDetail"
 import AppFooter from "./footer"
+import { Route, Switch } from 'react-router-dom'
 
 class AppHtml extends React.Component {
     render() {
         return (
             <html id="foo" lang="en">
                 <body>
-                    <AppHeader></AppHeader>
-                    <Stories></Stories>
-                    <AppFooter></AppFooter>
+                <AppHeader />
+                    <Switch>
+                        <Route exact path="/" component={Stories} />
+                        <Route path="/storyDetail" component={StoryDetail} />
+                    </Switch>
+                <AppFooter />
                 </body>
             </html>
-
         );
     }
 }

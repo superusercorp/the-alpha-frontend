@@ -4,7 +4,9 @@ import { UserList, UserShow, UserCreate, UserEdit } from "./users";
 import { Admin, Resource } from "react-admin";
 import AppHeader from "./header"
 import Stories from "./stories"
+import StoryDetail from './StoryDetail'
 import AppHtml from "./html"
+import { Route } from 'react-router-dom'
 
 import {
   FirebaseRealTimeSaga,
@@ -31,9 +33,12 @@ const firebaseRealtime = FirebaseRealTimeSaga(dataProvider, options);
 class App extends React.Component {
   render() {
     return (
-      <AppHtml>
-
-      </AppHtml>
+      <div>
+        <AppHtml/>
+        <Route path="/" comoponent={Stories} />
+        <Route path="stories" comoponent={Stories} />
+        <Route path="storydetail" comoponent={StoryDetail} />
+      </div>
     );
   }
 }
