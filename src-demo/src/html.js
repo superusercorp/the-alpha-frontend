@@ -13,7 +13,7 @@ class AppHtml extends React.Component {
                 <AppHeader />
                     <Switch>
                         <Route exact path="/" component={Stories} />
-                        <Route path="/storyDetail" component={StoryDetail} />
+                        <Route path="/story/:articleTitle" component={StoryDetail} />
                     </Switch>
                 <AppFooter />
                 </body>
