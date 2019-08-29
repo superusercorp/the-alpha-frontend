@@ -5,10 +5,7 @@ class StoryDetail extends React.Component {
         articleTitle: this.props.location.state,
       }
     render() {
-        // const { articleTitle } = this.state.articleTitle;
         const articleTitle = Object.values(this.props.location.state)
-        console.log("values " + articleTitle) 
-        // console.log(articleTitle)
         return (
             <div class="section">
                 <div class="container">
