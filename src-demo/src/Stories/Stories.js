@@ -49,7 +49,9 @@ class Stories extends React.Component {
 										<span class="post-date">{articleOne.publishedAt}</span>
 									</div>
 									<h3 class="post-title">
-										<Link to="/storydetail">{articleOne.title}</Link>
+										<Link to={{ pathname: '/storydetail', state: { articleTitle: articleOne.title } }}>
+											{articleOne.title}
+										</Link>
 									</h3>
 								</div>
 							</div>
@@ -64,7 +66,9 @@ class Stories extends React.Component {
 										<span class="post-date">July 27, 2019</span>
 									</div>
 									<h3 class="post-title">
-										<Link to="/storydetail">{articleTwo.title}</Link>
+										<Link to={{ pathname: '/storydetail', state: { articleTwo: articleTwo.title } }}>
+											{articleTwo.title}
+										</Link>
 									</h3>
 								</div>
 							</div>
@@ -87,7 +91,9 @@ class Stories extends React.Component {
 										<span class="post-date">March 27, 2019</span>
 									</div>
 									<h3 class="post-title">
-										<Link to="/storydetail">{articleThree.title}</Link>
+										<Link to={{ pathname: '/storydetail', state: { articleThree: articleThree.title } }}>
+											{articleThree.title}
+										</Link>
 									</h3>
 								</div>
 							</div>
@@ -102,7 +108,9 @@ class Stories extends React.Component {
 										<span class="post-date">March 27, 2019</span>
 									</div>
 									<h3 class="post-title">
-										<Link to="/storydetail">{articleFour.title}</Link>
+										<Link to={{ pathname: '/storydetail', state: { articleFour: articleFour.title } }}>
+											{articleFour.title}
+										</Link>
 									</h3>
 								</div>
 							</div>
@@ -117,7 +125,9 @@ class Stories extends React.Component {
 										<span class="post-date">March 27, 2019</span>
 									</div>
 									<h3 class="post-title">
-										<Link to="/storydetail">{articleThree.title}</Link>
+										<Link to={{ pathname: '/storydetail', state: { articleThree: articleThree.title } }}>
+											{articleThree.title}
+										</Link>
 									</h3>
 								</div>
 							</div>
