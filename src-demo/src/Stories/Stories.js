@@ -49,7 +49,7 @@ class Stories extends React.Component {
 										<span class="post-date">{articleOne.publishedAt}</span>
 									</div>
 									<h3 class="post-title">
-										<Link to={{ pathname: '/storydetail', state: { articleTitle: articleOne.title } }}>
+										<Link to={{ pathname: '/storydetail', state: { articleOne } }}>
 											{articleOne.title}
 										</Link>
 									</h3>
@@ -66,7 +66,7 @@ class Stories extends React.Component {
 										<span class="post-date">July 27, 2019</span>
 									</div>
 									<h3 class="post-title">
-										<Link to={{ pathname: '/storydetail', state: { articleTwo: articleTwo.title } }}>
+										<Link to={{ pathname: '/storydetail', state: { articleTwo: articleTwo } }}>
 											{articleTwo.title}
 										</Link>
 									</h3>
@@ -91,7 +91,7 @@ class Stories extends React.Component {
 										<span class="post-date">March 27, 2019</span>
 									</div>
 									<h3 class="post-title">
-										<Link to={{ pathname: '/storydetail', state: { articleThree: articleThree.title } }}>
+										<Link to={{ pathname: '/storydetail', state: { articleThree: articleThree } }}>
 											{articleThree.title}
 										</Link>
 									</h3>
@@ -108,7 +108,7 @@ class Stories extends React.Component {
 										<span class="post-date">March 27, 2019</span>
 									</div>
 									<h3 class="post-title">
-										<Link to={{ pathname: '/storydetail', state: { articleFour: articleFour.title } }}>
+										<Link to={{ pathname: '/storydetail', state: { articleFour: articleFour } }}>
 											{articleFour.title}
 										</Link>
 									</h3>
@@ -125,7 +125,7 @@ class Stories extends React.Component {
 										<span class="post-date">March 27, 2019</span>
 									</div>
 									<h3 class="post-title">
-										<Link to={{ pathname: '/storydetail', state: { articleThree: articleThree.title } }}>
+										<Link to={{ pathname: '/storydetail', state: { articleThree: articleThree } }}>
 											{articleThree.title}
 										</Link>
 									</h3>
