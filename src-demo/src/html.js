@@ -1,7 +1,7 @@
 import * as React from "react";
 import AppHeader from "./header"
-import Stories from "./Stories/Stories"
-import StoryDetail from "./StoryDetail/StoryDetail"
+import Stories from "./Stories/Stories.js"
+import StoryDetail from "./StoryDetail/StoryDetail.js"
 import Category from "./Categories/Categories"
 
 import AppFooter from "./footer"

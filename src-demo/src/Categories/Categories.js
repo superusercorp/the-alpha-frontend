@@ -7,10 +7,10 @@ class Categories extends React.Component {
         this.state = {
             articles: [],
             articleOne: [],
-			articleTwo: [],
-			articleThree: [],
-            articleFour: [],
-            articleFive: []
+			// articleTwo: [],
+			// articleThree: [],
+            // articleFour: [],
+            // articleFive: []
         };
     }
 
@@ -19,44 +19,55 @@ class Categories extends React.Component {
         return category;
     }
 
-    getFirstThree(data){
-        if (data != null || undefined) {
-            let firstThree = data.slice(0, 3)
-            this.state.firstThree = firstThree;
-            return firstThree; 
-        }
-    }
+    // getFirstThree(data){
+    //     if (data != null || undefined) {
+    //         let firstThree = data.slice(0, 3)
+    //         this.state.firstThree = firstThree;
+    //         return firstThree; 
+    //     }
+    // }
 
-    getFirst(data){
-        if (data != null || undefined) {
-            let first = data.slice(0, 1)
-            let json = JSON.stringify(first)
-            this.state.first = json;
-            return json;
-        }
-    }
+    // getFirst(data){
+    //     if (data != null || undefined) {
+    //         let first = data.slice(0, 1)
+    //         let json = JSON.stringify(first)
+    //         this.state.first = json;
+    //         return json;
+    //     }
+    // }
 
-    getLast(data){
-        if (data != null || undefined) {
-            let last = data.slice(3, data.length)
-            JSON.stringify(last)
-            this.state.getLast = last; 
-            return last;
-        }
-    }
+    // getLast(data){
+    //     if (data != null || undefined) {
+    //         let last = data.slice(3, data.length)
+    //         JSON.stringify(last)
+    //         this.state.getLast = last; 
+    //         return last;
+    //     }
+    // }
 
-    cleanJson(json) {
-        if (json != null || undefined || {}) {
-            let clean = JSON.stringify(json)
-            return JSON.parse(clean)
-        }
-        return {}
-    }
+    // cleanJson(json) {
+    //     if (json != null || undefined || {}) {
+    //         let clean = JSON.stringify(json)
+    //         return JSON.parse(clean)
+    //     }
+    //     return {}
+    // }
 
-    safety(data) {
-        if(data != null || undefined || {}) {
-            return data
+    // safety(data) {
+    //     if(data != null || undefined || {}) {
+    //         return data
+    //     }
+    // }
+
+    isSameCategory() {
+        let isCategorySpecificOne = []; 
+        let category = this.props.location.state.toString().split(',')
+        if(this.state.articleOne.category == category) {
+            console.log(this.state.articleOne.category)
+            JSON.stringify(this.state.articleOne)
+            return isCategorySpecificOne = this.state.articleOne; 
         }
+        return isCategorySpecificOne; 
     }
 
     // https://us-central1-thealphaposts.cloudfunctions.net/getCategory?category=osadf
@@ -67,7 +78,7 @@ class Categories extends React.Component {
                 data => this.setState({
                     articles: data,
                     articleOne: data[0],
-                    articleTwo: data[1],
+                    // articleTwo: data[1],
 					// articleThree: data[2],
                     // articleFour: data[3],
                     // articleFive: data[4]
@@ -78,11 +89,12 @@ class Categories extends React.Component {
 
     render() {
         const { articleOne } = this.state.articleOne;
-		const { articleTwo } = this.state.articleTwo;
+		// const { articleTwo } = this.state.articleTwo;
 		// const { articleThree } = this.state.articleThree;
 		// const { articleFour } = this.state.articleFour;
         // const { articleFive } = this.state.articleFive;
         console.log(this.getCategoryStr())
+        console.log("the same category is " + this.isSameCategory().title)
 
         return (
             <div class="section">
@@ -95,10 +107,10 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-1.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                                <a class="post-category cat-2" href="#">Judges</a>
+                                                <a class="post-category cat-2" href="#">{this.isSameCategory().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
-                                            <h3 class="post-title">{this.state.articleOne.title}<a href="blog-post.html"></a></h3>
+                                            <h3 class="post-title">{this.isSameCategory().title}<a href="blog-post.html"></a></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +123,7 @@ class Categories extends React.Component {
                                                 <a class="post-category cat-2" href="#">Judges</a>
                                                 <span class="post-date"></span>
                                             </div>
-                                            <h3 class="post-title">{this.state.articleTwo.title}<a href="blog-post.html">{}</a></h3>
+                                            <h3 class="post-title"><a href="blog-post.html">{}</a></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +136,7 @@ class Categories extends React.Component {
                                                 <a class="post-category cat-2" href="#">Attorneys</a>
                                                 <span class="post-date"></span>
                                             </div>
-                                            <h3 class="post-title"><a href="blog-post.html">{this.state.articleTwo.title}</a></h3>
+                                            <h3 class="post-title"><a href="blog-post.html"></a></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -147,7 +159,7 @@ class Categories extends React.Component {
                                                 <a class="post-category cat-2" href="#">JavaScript</a>
                                                 <span class="post-date"></span>
                                             </div>
-                                            <h3 class="post-title"><a href="blog-post.html">{this.state.articleTwo.title}</a></h3>
+                                            <h3 class="post-title"><a href="blog-post.html"></a></h3>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
                                         </div>
                                     </div>
@@ -161,7 +173,7 @@ class Categories extends React.Component {
                                                 <a class="post-category cat-2" href="#">JavaScript</a>
                                                 <span class="post-date"></span>
                                             </div>
-                                            <h3 class="post-title"><a href="blog-post.html">{this.state.articleTwo.title}</a></h3>
+                                            <h3 class="post-title"><a href="blog-post.html"></a></h3>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
                                         </div>
                                     </div>
@@ -175,7 +187,7 @@ class Categories extends React.Component {
                                                 <a class="post-category cat-2" href="#">JavaScript</a>
                                                 <span class="post-date"></span>
                                             </div>
-                                            <h3 class="post-title"><a href="blog-post.html">{this.state.articleTwo.title}</a></h3>
+                                            <h3 class="post-title"><a href="blog-post.html"></a></h3>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
                                         </div>
                                     </div>
@@ -189,7 +201,7 @@ class Categories extends React.Component {
                                                 <a class="post-category cat-2" href="#">JavaScript</a>
                                                 <span class="post-date"></span>
                                             </div>
-                                            <h3 class="post-title"><a href="blog-post.html">{this.state.articleTwo.title}</a></h3>
+                                            <h3 class="post-title"><a href="blog-post.html"></a></h3>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
                                         </div>
                                     </div>
