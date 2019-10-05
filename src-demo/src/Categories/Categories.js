@@ -70,6 +70,12 @@ class Categories extends React.Component {
         return isCategorySpecificOne; 
     }
 
+    getColorIndex(categoryStr) {
+        let catArr = ['foo', 'cases', 'exonerations', 'attorneys', 'judges', ]
+        console.log("the index is " + catArr.indexOf(categoryStr))
+        return catArr.indexOf(categoryStr)
+    }
+
     // https://us-central1-thealphaposts.cloudfunctions.net/getCategory?category=osadf
     componentDidMount() {
         fetch('https://us-central1-thealphaposts.cloudfunctions.net/getCategory?category=' + this.getCategoryStr())
@@ -107,7 +113,7 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-1.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                                <a class="post-category cat-2" href="#">{this.isSameCategory().category}</a>
+                                                <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title">{this.isSameCategory().title}<a href="blog-post.html"></a></h3>
@@ -120,7 +126,7 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-4.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                                <a class="post-category cat-2" href="#">Judges</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title"><a href="blog-post.html">{}</a></h3>
@@ -133,7 +139,7 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-6.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                                <a class="post-category cat-2" href="#">Attorneys</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title"><a href="blog-post.html"></a></h3>
@@ -156,7 +162,7 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-2.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                                <a class="post-category cat-2" href="#">JavaScript</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title"><a href="blog-post.html"></a></h3>
@@ -170,7 +176,7 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-5.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                                <a class="post-category cat-2" href="#">JavaScript</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title"><a href="blog-post.html"></a></h3>
@@ -184,7 +190,7 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-3.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                                <a class="post-category cat-2" href="#">JavaScript</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title"><a href="blog-post.html"></a></h3>
@@ -198,7 +204,7 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-1.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                                <a class="post-category cat-2" href="#">JavaScript</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title"><a href="blog-post.html"></a></h3>
