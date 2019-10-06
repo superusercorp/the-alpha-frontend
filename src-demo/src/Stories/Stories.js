@@ -14,10 +14,10 @@ class Stories extends React.Component {
 	}
 
 	spaceToDash(strInput) {
-		if(strInput != undefined) {
+		if (strInput != undefined) {
 			const str = strInput
 			return str.replace(/\s+/g, '-').toLowerCase();
-		}	
+		}
 	}
 
 	// getImage() {
@@ -39,25 +39,23 @@ class Stories extends React.Component {
 
 	formatDate(inputDate) {
 		let monthArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
-
-		console.log("input is: " + inputDate)
 		var date = new Date(inputDate);
 		if (!isNaN(date.getTime())) {
 			// Months use 0 index.
-			console.log("date is: " + date)
 			let parts = inputDate.split('-');
-			console.log("parts1: " + parts[0])
-			console.log("parts2: " + parts[1])
-			console.log("parts3: " + parts[2])
 			let days = parts[2].toString()
 			let daysStr = days.substr(0, 2)
-			console.log("daysStr: " + daysStr)
 			let strIndex = parts[1].substr(1, 1)
 			let month = monthArr[strIndex]
-			console.log(monthArr[strIndex])
-			return month + ' ' + daysStr + ',' + parts[0]; 
+			return month + ' ' + daysStr + ',' + parts[0];
 		}
 	}
+
+	getColorIndex(categoryStr) {
+        let catArr = ['foo', 'cases', 'exonerations', 'attorneys', 'judges', ]
+        console.log("the index is " + catArr.indexOf(categoryStr))
+        return catArr.indexOf(categoryStr)
+    }
 
 	componentDidMount() {
 		fetch('https://us-central1-thealphaposts.cloudfunctions.net/getLatestPosts')
@@ -82,19 +80,9 @@ class Stories extends React.Component {
 		const { articleFive } = this.state;
 		console.log(articleOne.file)
 
-		function getImage() {
-			if(articleOne != undefined && articleOne.file != undefined && articleOne.file.src != undefined) {
-				return articleOne.file.src
-			}
-		}
-
-		function toDateTime() {
-			if(articleOne != undefined && articleOne.lastupdate != undefined && articleOne.lastupdate.seconds != undefined) {
-				var t = new Date(1970, 0, 1); // Epoch
-				t.setSeconds(articleOne.lastupdate.seconds);
-				console.log("article one seconds is: " + articleOne.lastupdate.seconds)
-				console.log(t)
-				return t;
+		function getImage(articleIndexx) {
+			if (articleIndexx != undefined && articleIndexx.file != undefined && articleIndexx.file.src != undefined) {
+				return articleIndexx.file.src
 			}
 		}
 
@@ -104,10 +92,13 @@ class Stories extends React.Component {
 					<div class="row">
 						<div class="col-md-6">
 							<div class="post post-thumb">
-								<a class="post-img" href="blog-post.html"><img src= {getImage()} alt=""></img></a>
+								<Link to={{ pathname: '/story/' + this.spaceToDash(articleOne.title), state: { articleOne } }}>
+									<a class="post-img" href=""><img src={getImage(articleOne)} alt=""></img></a>
+								</Link>
+
 								<div class="post-body">
 									<div class="post-meta">
-										<a class="post-category cat-2" href="category.html">News</a>
+									<a class={"post-category cat-" + this.getColorIndex(articleOne.category)} href="#">{articleOne.category}</a>
 										<span class="post-date">{this.formatDate(articleOne.createdate)}</span>
 									</div>
 									<h3 class="post-title">
@@ -121,11 +112,13 @@ class Stories extends React.Component {
 
 						<div class="col-md-6">
 							<div class="post post-thumb">
-								<a class="post-img" href="blog-post.html"><img src="/img/post-2.jpg" alt=""></img></a>
+								<Link to={{ pathname: '/story/' + this.spaceToDash(articleTwo.title), state: { articleTwo } }}>
+									<a class="post-img" href=""><img src={getImage(articleTwo)} alt=""></img></a>
+								</Link>
 								<div class="post-body">
 									<div class="post-meta">
-										<a class="post-category cat-3" href="category.html">Attorneys</a>
-										<span class="post-date">July 27, 2019</span>
+									<a class={"post-category cat-" + this.getColorIndex(articleTwo.category)} href="#">{articleTwo.category}</a>
+										<span class="post-date">{this.formatDate(articleTwo.createdate)}</span>
 									</div>
 									<h3 class="post-title">
 										<Link to={{ pathname: '/story/' + this.spaceToDash(articleTwo.title), state: { articleTwo: articleTwo } }}>
@@ -146,11 +139,13 @@ class Stories extends React.Component {
 
 						<div class="col-md-4">
 							<div class="post">
-								<a class="post-img" href="blog-post.html"><img src="/img/post-3.jpg" alt=""></img></a>
+								<Link to={{ pathname: '/story/' + this.spaceToDash(articleThree.title), state: { articleThree } }}>
+									<a class="post-img" href=""><img src={getImage(articleThree)} alt=""></img></a>
+								</Link>
 								<div class="post-body">
 									<div class="post-meta">
-										<a class="post-category cat-1" href="category.html">Exonerations</a>
-										<span class="post-date">March 27, 2019</span>
+									<a class={"post-category cat-" + this.getColorIndex(articleThree.category)} href="#">{articleThree.category}</a>
+										<span class="post-date">{this.formatDate(articleThree.createdate)}</span>
 									</div>
 									<h3 class="post-title">
 										<Link to={{ pathname: '/story/' + this.spaceToDash(articleThree.title), state: { articleThree: articleThree } }}>
@@ -163,11 +158,15 @@ class Stories extends React.Component {
 
 						<div class="col-md-4">
 							<div class="post">
-								<a class="post-img" href="blog-post.html"><img src="/img/post-4.jpg" alt=""></img></a>
+
+								<Link to={{ pathname: '/story/' + this.spaceToDash(articleFour.title), state: { articleFour } }}>
+									<a class="post-img" href=""><img src={getImage(articleFour)} alt=""></img></a>
+								</Link>
+
 								<div class="post-body">
 									<div class="post-meta">
-										<a class="post-category cat-2" href="category.html">Cases</a>
-										<span class="post-date">March 27, 2019</span>
+									<a class={"post-category cat-" + this.getColorIndex(articleFour.category)} href="#">{articleFour.category}</a>
+										<span class="post-date">{this.formatDate(articleFour.createdate)}</span>
 									</div>
 									<h3 class="post-title">
 										<Link to={{ pathname: '/story/' + this.spaceToDash(articleFour.title), state: { articleFour: articleFour } }}>
@@ -180,11 +179,15 @@ class Stories extends React.Component {
 
 						<div class="col-md-4">
 							<div class="post">
-								<a class="post-img" href="blog-post.html"><img src="/img/post-5.jpg" alt=""></img></a>
+								
+								<Link to={{ pathname: '/story/' + this.spaceToDash(articleThree.title), state: { articleThree } }}>
+									<a class="post-img" href=""><img src={getImage(articleThree)} alt=""></img></a>
+								</Link>
+
 								<div class="post-body">
 									<div class="post-meta">
-										<a class="post-category cat-3" href="category.html">Attorneys</a>
-										<span class="post-date">March 27, 2019</span>
+									<a class={"post-category cat-" + this.getColorIndex(articleThree.category)} href="#">{articleThree.category}</a>
+										<span class="post-date">{this.formatDate(articleThree.createdate)}</span>
 									</div>
 									<h3 class="post-title">
 										<Link to={{ pathname: '/story/' + this.spaceToDash(articleThree.title), state: { articleThree: articleThree } }}>
