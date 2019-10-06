@@ -7,10 +7,12 @@ class Categories extends React.Component {
         this.state = {
             articles: [],
             articleOne: [],
-			// articleTwo: [],
-			// articleThree: [],
-            // articleFour: [],
-            // articleFive: []
+			articleTwo: [],
+			articleThree: [],
+            articleFour: [],
+            articleFive: [],
+            articleSix: [],
+            articleSeven: []
         };
     }
 
@@ -63,9 +65,68 @@ class Categories extends React.Component {
         let isCategorySpecificOne = []; 
         let category = this.props.location.state.toString().split(',')
         if(this.state.articleOne.category == category) {
-            console.log(this.state.articleOne.category)
             JSON.stringify(this.state.articleOne)
-            return isCategorySpecificOne = this.state.articleOne; 
+            isCategorySpecificOne = this.state.articleOne; 
+        }
+        return isCategorySpecificOne; 
+    }
+
+    isSameCategoryTwo() {
+        let isCategorySpecificOne = []; 
+        let category = this.props.location.state.toString().split(',')
+        if(this.state.articleTwo.category == category) {
+            JSON.stringify(this.state.articleTwo)
+            isCategorySpecificOne = this.state.articleTwo; 
+        }
+        return isCategorySpecificOne; 
+    }
+
+    isSameCategoryThree() {
+        let isCategorySpecificOne = []; 
+        let category = this.props.location.state.toString().split(',')
+        if(this.state.articleThree.category == category) {
+            JSON.stringify(this.state.articleThree)
+            isCategorySpecificOne = this.state.articleThree; 
+        }
+        return isCategorySpecificOne; 
+    }
+
+    isSameCategoryFour() {
+        let isCategorySpecificOne = []; 
+        let category = this.props.location.state.toString().split(',')
+        if(this.state.articleFour.category == category) {
+            JSON.stringify(this.state.articleFour)
+            isCategorySpecificOne = this.state.articleFour; 
+        }
+        return isCategorySpecificOne; 
+    }
+
+    isSameCategoryFive() {
+        let isCategorySpecificOne = []; 
+        let category = this.props.location.state.toString().split(',')
+        if(this.state.articleFive.category == category) {
+            JSON.stringify(this.state.articleFive)
+            isCategorySpecificOne = this.state.articleFive; 
+        }
+        return isCategorySpecificOne; 
+    }
+
+    isSameCategorySix() {
+        let isCategorySpecificOne = []; 
+        let category = this.props.location.state.toString().split(',')
+        if(this.state.articleSix.category == category) {
+            JSON.stringify(this.state.articleSix)
+            isCategorySpecificOne = this.state.articleSix; 
+        }
+        return isCategorySpecificOne; 
+    }
+
+    isSameCategorySeven() {
+        let isCategorySpecificOne = []; 
+        let category = this.props.location.state.toString().split(',')
+        if(this.state.articleSeven.category == category) {
+            JSON.stringify(this.state.articelSeven)
+            isCategorySpecificOne = this.state.articleSeven; 
         }
         return isCategorySpecificOne; 
     }
@@ -75,19 +136,27 @@ class Categories extends React.Component {
         console.log("the index is " + catArr.indexOf(categoryStr))
         return catArr.indexOf(categoryStr)
     }
+   
 
     // https://us-central1-thealphaposts.cloudfunctions.net/getCategory?category=osadf
     componentDidMount() {
+        // let isLoaded = false
+        // if (!this.isLoaded) {
+        //     window.location.reload()
+        //  }
+        // this.setState(isLoaded = true)
         fetch('https://us-central1-thealphaposts.cloudfunctions.net/getCategory?category=' + this.getCategoryStr())
             .then(res => res.json())
             .then(
                 data => this.setState({
                     articles: data,
                     articleOne: data[0],
-                    // articleTwo: data[1],
-					// articleThree: data[2],
-                    // articleFour: data[3],
-                    // articleFive: data[4]
+                    articleTwo: data[1],
+					articleThree: data[2],
+                    articleFour: data[3],
+                    articleFive: data[4],
+                    articleSix: data[5],
+                    articleSeven: data[6]
                 })
             )
             .catch(console.log);
@@ -95,12 +164,13 @@ class Categories extends React.Component {
 
     render() {
         const { articleOne } = this.state.articleOne;
-		// const { articleTwo } = this.state.articleTwo;
+		const { articleTwo } = this.state.articleTwo;
 		// const { articleThree } = this.state.articleThree;
 		// const { articleFour } = this.state.articleFour;
         // const { articleFive } = this.state.articleFive;
         console.log(this.getCategoryStr())
         console.log("the same category is " + this.isSameCategory().title)
+        console.log("ARTICLE TWO: " + JSON.stringify(articleTwo))
 
         return (
             <div class="section">
@@ -126,10 +196,10 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-4.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategoryTwo().category)} href="#">{this.isSameCategoryTwo().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
-                                            <h3 class="post-title"><a href="blog-post.html">{}</a></h3>
+                                            <h3 class="post-title">{this.isSameCategoryTwo().title}<a href="blog-post.html"></a></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -139,10 +209,10 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-6.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategoryThree().category)} href="#">{this.isSameCategoryThree().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
-                                            <h3 class="post-title"><a href="blog-post.html"></a></h3>
+                                            <h3 class="post-title">{this.isSameCategoryThree().category}<a href="blog-post.html"></a></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -162,11 +232,11 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-2.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategoryFour().category)} href="#">{this.isSameCategoryFour().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title"><a href="blog-post.html"></a></h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+                                            <p>{this.isSameCategoryFive().title}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -176,11 +246,11 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-5.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategoryFive().category)} href="#">{this.isSameCategoryFive().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title"><a href="blog-post.html"></a></h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+                                            <p>{this.isSameCategoryFive().title}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -190,11 +260,11 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-3.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategorySix().category)} href="#">{this.isSameCategorySix().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title"><a href="blog-post.html"></a></h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+                                            <p>{this.isSameCategorySix().title}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -204,11 +274,11 @@ class Categories extends React.Component {
                                         <a class="post-img" href="blog-post.html"><img src="./../img/post-1.jpg" alt="" /></a>
                                         <div class="post-body">
                                             <div class="post-meta">
-                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
+                                            <a class={"post-category cat-" + this.getColorIndex(this.isSameCategorySeven().category)} href="#">{this.isSameCategorySeven().category}</a>
                                                 <span class="post-date"></span>
                                             </div>
                                             <h3 class="post-title"><a href="blog-post.html"></a></h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+                                            <p>{this.isSameCategorySeven().title}</p>
                                         </div>
                                     </div>
                                 </div>

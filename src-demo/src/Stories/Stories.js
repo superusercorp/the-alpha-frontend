@@ -20,6 +20,45 @@ class Stories extends React.Component {
 		}	
 	}
 
+	// getImage() {
+	// 	let imageStr = "image";
+	// 	if(this.state.articleOne != undefined || null || "") {
+	// 		let artOne = this.state.articleOne
+	// 		console.log("state one is: " + this.state.articleOne)
+	// 		if(artOne.file.src != undefined && artOne.file.src != null) {
+	// 			imageStr = artOne.file.src
+	// 		}
+	// 	}
+	// 	return imageStr
+	// }
+
+	// getImage() {
+	// 	let imageStr = "foo"
+	// 	return imageStr
+	// }
+
+	formatDate(inputDate) {
+		let monthArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
+
+		console.log("input is: " + inputDate)
+		var date = new Date(inputDate);
+		if (!isNaN(date.getTime())) {
+			// Months use 0 index.
+			console.log("date is: " + date)
+			let parts = inputDate.split('-');
+			console.log("parts1: " + parts[0])
+			console.log("parts2: " + parts[1])
+			console.log("parts3: " + parts[2])
+			let days = parts[2].toString()
+			let daysStr = days.substr(0, 2)
+			console.log("daysStr: " + daysStr)
+			let strIndex = parts[1].substr(1, 1)
+			let month = monthArr[strIndex]
+			console.log(monthArr[strIndex])
+			return month + ' ' + daysStr + ',' + parts[0]; 
+		}
+	}
+
 	componentDidMount() {
 		fetch('https://us-central1-thealphaposts.cloudfunctions.net/getLatestPosts')
 			.then(res => res.json())
@@ -41,7 +80,23 @@ class Stories extends React.Component {
 		const { articleThree } = this.state;
 		const { articleFour } = this.state;
 		const { articleFive } = this.state;
+		console.log(articleOne.file)
 
+		function getImage() {
+			if(articleOne != undefined && articleOne.file != undefined && articleOne.file.src != undefined) {
+				return articleOne.file.src
+			}
+		}
+
+		function toDateTime() {
+			if(articleOne != undefined && articleOne.lastupdate != undefined && articleOne.lastupdate.seconds != undefined) {
+				var t = new Date(1970, 0, 1); // Epoch
+				t.setSeconds(articleOne.lastupdate.seconds);
+				console.log("article one seconds is: " + articleOne.lastupdate.seconds)
+				console.log(t)
+				return t;
+			}
+		}
 
 		return (
 			<div class="section">
@@ -49,11 +104,11 @@ class Stories extends React.Component {
 					<div class="row">
 						<div class="col-md-6">
 							<div class="post post-thumb">
-								<a class="post-img" href="blog-post.html"><img src="/img/post-1.jpg" alt=""></img></a>
+								<a class="post-img" href="blog-post.html"><img src= {getImage()} alt=""></img></a>
 								<div class="post-body">
 									<div class="post-meta">
 										<a class="post-category cat-2" href="category.html">News</a>
-										<span class="post-date">{articleOne.publishedAt}</span>
+										<span class="post-date">{this.formatDate(articleOne.createdate)}</span>
 									</div>
 									<h3 class="post-title">
 										<Link to={{ pathname: '/story/' + this.spaceToDash(articleOne.title), state: { articleOne } }}>

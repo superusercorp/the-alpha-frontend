@@ -2,6 +2,7 @@ import * as React from "react";
 import { Route, Switch, Link } from 'react-router-dom'
 
 class AppHeader extends React.Component {
+  
   render() {
     const { category } = "osadf"
 
@@ -23,7 +24,7 @@ class AppHeader extends React.Component {
                     Cases
                       </Link>
                 </li>
-                <li class="cat-2">
+                <li class="cat-2" >
                   <Link to={{ pathname: '/category/exonerations', state: "exonerations" }}>
                     Exonerations
                       </Link>
