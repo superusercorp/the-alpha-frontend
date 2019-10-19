@@ -17,8 +17,8 @@ class AppHeader extends React.Component {
               </div>
 
               <ul class="nav-menu nav navbar-nav">
-                <li><a href="category.html">News</a></li>
-                <li><a href="category.html">Popular</a></li>
+                <li><a href="">News</a></li>
+                <li><a href="">Popular</a></li>
                 <li class="cat-1">
                   <Link to={{ pathname: '/category/cases', state: "cases" }}>
                     Cases
