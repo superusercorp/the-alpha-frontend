@@ -1,306 +1,170 @@
-import * as React from "react";
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import {
+    Link,
+    useLocation,
+} from "react-router-dom";
 
-class Categories extends React.Component {
+function Categories() {
+    let location = useLocation()
+    let cat = location.pathname.toString().split('/')[2]
+    const [response, setResponse] = useState([]);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            articles: [],
-            articleOne: [],
-            articleTwo: [],
-            articleThree: [],
-            articleFour: [],
-            articleFive: [],
-            articleSix: [],
-            articleSeven: []
-        };
-    }
+    useEffect(() => {
+        console.log('New path: ', cat);
+        fetch('https://us-central1-thealphaposts.cloudfunctions.net/getCategory?category=' + cat)
+            .then(res => res.json())
+            .then(res => {
+                setResponse(res)
+            })
+    }, [location.pathname]);
 
-    getCategoryStr() {
-        let category = Object.values(this.props.location.state.toString().split(','))
-        return category;
-    }
-
-    isSameCategory() {
-        let isCategorySpecificOne = [];
-        let category = this.props.location.state.toString().split(',')
-        if (this.state.articleOne.category == category) {
-            JSON.stringify(this.state.articleOne)
-            isCategorySpecificOne = this.state.articleOne;
+    function article(indexx) {
+        if (response !== undefined) {
+            return response[indexx]
         }
-        return isCategorySpecificOne;
     }
 
-    isSameCategoryTwo() {
-        let isCategorySpecificOne = [];
-        let category = this.props.location.state.toString().split(',')
-        if (this.state.articleTwo.category == category) {
-            JSON.stringify(this.state.articleTwo)
-            isCategorySpecificOne = this.state.articleTwo;
+    function getTitle(indexx) {
+        if (response[indexx] !== undefined) {
+            console.log("title is " + JSON.stringify(response[indexx]))
+            let title = response[indexx].title
+            return title;
         }
-        return isCategorySpecificOne;
     }
 
-    isSameCategoryThree() {
-        let isCategorySpecificOne = [];
-        let category = this.props.location.state.toString().split(',')
-        if (this.state.articleThree.category == category) {
-            JSON.stringify(this.state.articleThree)
-            isCategorySpecificOne = this.state.articleThree;
-        }
-        return isCategorySpecificOne;
-    }
-
-    isSameCategoryFour() {
-        let isCategorySpecificOne = [];
-        let category = this.props.location.state.toString().split(',')
-        if (this.state.articleFour.category == category) {
-            JSON.stringify(this.state.articleFour)
-            isCategorySpecificOne = this.state.articleFour;
-        }
-        return isCategorySpecificOne;
-    }
-
-    isSameCategoryFive() {
-        let isCategorySpecificOne = [];
-        let category = this.props.location.state.toString().split(',')
-        if (this.state.articleFive.category == category) {
-            JSON.stringify(this.state.articleFive)
-            isCategorySpecificOne = this.state.articleFive;
-        }
-        return isCategorySpecificOne;
-    }
-
-    isSameCategorySix() {
-        let isCategorySpecificOne = [];
-        let category = this.props.location.state.toString().split(',')
-        if (this.state.articleSix.category == category) {
-            JSON.stringify(this.state.articleSix)
-            isCategorySpecificOne = this.state.articleSix;
-        }
-        return isCategorySpecificOne;
-    }
-
-    isSameCategorySeven() {
-        let isCategorySpecificOne = [];
-        let category = this.props.location.state.toString().split(',')
-        if (this.state.articleSeven.category == category) {
-            JSON.stringify(this.state.articelSeven)
-            isCategorySpecificOne = this.state.articleSeven;
-        }
-        return isCategorySpecificOne;
-    }
-
-    getColorIndex(categoryStr) {
-        let catArr = ['foo', 'cases', 'exonerations', 'attorneys', 'judges',]
-        console.log("the index is " + catArr.indexOf(categoryStr))
-        return catArr.indexOf(categoryStr)
-    }
-
-    spaceToDash(strInput) {
+    function spaceToDash(strInput) {
         if (strInput != undefined) {
-            const str = strInput
+            const str = strInput.title
             return str.replace(/\s+/g, '-').toLowerCase();
         }
     }
 
-    formatDate(inputDate) {
-        let monthArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
-        var date = new Date(inputDate);
-        if (!isNaN(date.getTime())) {
-            // Months use 0 index.
-            let parts = inputDate.split('-');
-            let days = parts[2].toString()
-            let daysStr = days.substr(0, 2)
-            let strIndex = parts[1].substr(1, 1)
-            let month = monthArr[strIndex]
-            return month + ' ' + daysStr + ',' + parts[0];
+    function getImage(indexx) {
+        if (article(indexx) != undefined && article(indexx).file != undefined && article(indexx).file.src != undefined) {
+            return article(indexx).file.src
         }
     }
 
-    // https://us-central1-thealphaposts.cloudfunctions.net/getCategory?category=osadf
-    componentDidMount() {
-        // let isLoaded = false
-        // if (!this.isLoaded) {
-        //     window.location.reload()
-        //  }
-        // this.setState(isLoaded = true)
-        fetch('https://us-central1-thealphaposts.cloudfunctions.net/getCategory?category=' + this.getCategoryStr())
-            .then(res => res.json())
-            .then(
-                data => this.setState({
-                    articles: data,
-                    articleOne: data[0],
-                    articleTwo: data[1],
-                    articleThree: data[2],
-                    articleFour: data[3],
-                    articleFive: data[4],
-                    articleSix: data[5],
-                    articleSeven: data[6]
-                })
-            )
-            .catch(console.log);
+    function getColorIndex(indexx) {
+        if (indexx !== undefined && article(indexx) !== undefined) {
+            let cat = article(indexx).category
+            let catArr = ['foo', 'cases', 'exonerations', 'attorneys', 'judges',]
+            return catArr.indexOf(cat)
+        }
     }
 
-    render() {
-        const { articleOne } = this.state
-        const { articleTwo } = this.state;
-        const { articleThree } = this.state;
-        const { articleFour } = this.state;
-        const { articleFive } = this.state;
-        const { articleSix } = this.state;
-        const { articleSeven } = this.state;
-        console.log(this.getCategoryStr())
-        console.log("the same category is " + this.isSameCategory().title)
-        console.log("ARTICLE TWO: " + JSON.stringify(articleTwo))
-
-        function getImage(articleIndexx) {
-            if (articleIndexx != undefined && articleIndexx.file != undefined && articleIndexx.file.src != undefined) {
-                return articleIndexx.file.src
+    function formatDate(indexx) {
+        if (indexx !== undefined && article(indexx) !== undefined) {
+            let monthArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
+            var date = new Date(article(indexx).createdate);
+            if (!isNaN(date.getTime())) {
+                // Months use 0 index.
+                let parts = article(indexx).createdate.split('-');
+                let days = parts[2].toString()
+                let daysStr = days.substr(0, 2)
+                let strIndex = parts[1].substr(1, 1)
+                let month = monthArr[strIndex]
+                return month + ' ' + daysStr + ',' + parts[0];
             }
         }
+    }
 
-        return (
-            <div class="section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="post post-thumb">
-                                        <Link to={{ pathname: '/story/' + this.spaceToDash(this.isSameCategory().title), state: { articleOne } }}>
-                                            <a class="post-img" href=""><img src={getImage(this.isSameCategory())} alt=""></img></a>
-                                        </Link>
+    return (
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="post post-thumb">
+                                    <Link to={{ pathname: '/story/' + spaceToDash(article(0)), state: article(0) }}>
+                                        <a class="post-img" href=""><img src={getImage(0)} alt=""></img></a>
+                                    </Link>
 
-                                        <div class="post-body">
-                                            <div class="post-meta">
-                                                <a class={"post-category cat-" + this.getColorIndex(this.isSameCategory().category)} href="#">{this.isSameCategory().category}</a>
-                                                <span class="post-date">{this.formatDate(this.isSameCategory().createdate)}</span>
-                                            </div>
-                                            <h3 class="post-title">{this.isSameCategory().title}<a href="blog-post.html"></a></h3>
+                                    <div class="post-body">
+                                        <div class="post-meta">
+                                            <a class={"post-category cat-" + getColorIndex(0)} href="#">{article(0) && article(0).category}</a>
+                                            <span class="post-date">{formatDate(0)}</span>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="post">
-                                        <Link to={{ pathname: '/story/' + this.spaceToDash(this.isSameCategoryTwo().title), state: { articleTwo } }}>
-                                            <a class="post-img" href=""><img src={getImage(this.isSameCategoryTwo())} alt=""></img></a>
-                                        </Link>
-                                        <div class="post-body">
-                                            <div class="post-meta">
-                                                <a class={"post-category cat-" + this.getColorIndex(this.isSameCategoryTwo().category)} href="#">{this.isSameCategoryTwo().category}</a>
-                                                <span class="post-date">{this.formatDate(this.isSameCategoryTwo().createdate)}</span>
-                                            </div>
-                                            <h3 class="post-title">{this.isSameCategoryTwo().title}<a href="blog-post.html"></a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="post">
-                                        <Link to={{ pathname: '/story/' + this.spaceToDash(this.isSameCategoryThree().title), state: { articleThree } }}>
-                                            <a class="post-img" href=""><img src={getImage(this.isSameCategoryThree())} alt=""></img></a>
-                                        </Link>
-                                        <div class="post-body">
-                                            <div class="post-meta">
-                                                <a class={"post-category cat-" + this.getColorIndex(this.isSameCategoryThree().category)} href="#">{this.isSameCategoryThree().category}</a>
-                                                <span class="post-date">{this.formatDate(this.isSameCategoryThree().createdate)}</span>
-                                            </div>
-                                            <h3 class="post-title">{this.isSameCategoryThree().category}<a href="blog-post.html"></a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix visible-md visible-lg"></div>
-
-                                <div class="col-md-12">
-                                    <div class="section-row">
-                                        <a href="#">
-                                            <img class="img-responsive center-block" src="./../img/ad-2.jpg" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="post post-row">
-                                        <Link to={{ pathname: '/story/' + this.spaceToDash(this.isSameCategoryFour().title), state: { articleFour } }}>
-                                            <a class="post-img" href=""><img src={getImage(this.isSameCategoryFour())} alt=""></img></a>
-                                        </Link>
-                                        <div class="post-body">
-                                            <div class="post-meta">
-                                                <a class={"post-category cat-" + this.getColorIndex(this.isSameCategoryFour().category)} href="#">{this.isSameCategoryFour().category}</a>
-                                                <span class="post-date">{this.formatDate(this.isSameCategoryFour().createdate)}</span>
-                                            </div>
-                                            <h3 class="post-title"><a href="blog-post.html"></a></h3>
-                                            <p>{this.isSameCategoryFive().title}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="post post-row">
-                                        <Link to={{ pathname: '/story/' + this.spaceToDash(this.isSameCategoryFive().title), state: { articleFive } }}>
-                                            <a class="post-img" href=""><img src={getImage(this.isSameCategoryFive())} alt=""></img></a>
-                                        </Link>
-                                        <div class="post-body">
-                                            <div class="post-meta">
-                                                <a class={"post-category cat-" + this.getColorIndex(this.isSameCategoryFive().category)} href="#">{this.isSameCategoryFive().category}</a>
-                                                <span class="post-date">{this.formatDate(this.isSameCategoryFive().createdate)}</span>
-                                            </div>
-                                            <h3 class="post-title"><a href="blog-post.html"></a></h3>
-                                            <p>{this.isSameCategoryFive().title}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="post post-row">
-                                        <Link to={{ pathname: '/story/' + this.spaceToDash(this.isSameCategorySix().title), state: { articleSix } }}>
-                                            <a class="post-img" href=""><img src={getImage(this.isSameCategorySix())} alt=""></img></a>
-                                        </Link>
-                                        <div class="post-body">
-                                            <div class="post-meta">
-                                                <a class={"post-category cat-" + this.getColorIndex(this.isSameCategorySix().category)} href="#">{this.isSameCategorySix().category}</a>
-                                                <span class="post-date">{this.formatDate(this.isSameCategorySix().createdate)}</span>
-                                            </div>
-                                            <h3 class="post-title"><a href="blog-post.html"></a></h3>
-                                            <p>{this.isSameCategorySix().title}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="post post-row">
-                                        <Link to={{ pathname: '/story/' + this.spaceToDash(this.isSameCategorySeven().title), state: { articleSeven } }}>
-                                            <a class="post-img" href=""><img src={getImage(this.isSameCategorySeven())} alt=""></img></a>
-                                        </Link>
-                                        <div class="post-body">
-                                            <div class="post-meta">
-                                                <a class={"post-category cat-" + this.getColorIndex(this.isSameCategorySeven().category)} href="#">{this.isSameCategorySeven().category}</a>
-                                                <span class="post-date">{this.formatDate(this.isSameCategorySeven().createdate)}</span>
-                                            </div>
-                                            <h3 class="post-title"><a href="blog-post.html"></a></h3>
-                                            <p>{this.isSameCategorySeven().title}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="section-row">
-                                        <button class="primary-button center-block">Load More</button>
+                                        <h3 class="post-title">
+                                            <p>
+                                                <Link to={{ pathname: '/story/' + spaceToDash(article(0)), state: article(0) }}>
+                                                    {getTitle(0)}
+                                                </Link>
+                                            </p>
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                            {response && response.length > 6 && response.slice(1, 3).map((item, index) => (
+                                <div class="col-md-6">
+                                    <div class="post post-row">
+                                        <Link to={{ pathname: '/story/' + spaceToDash(item), state: { item } }}>
+                                            <a class="post-img" href=""><img src={getImage(index + 1)} alt=""></img></a>
+                                        </Link>
+                                        <div class="post-body">
+                                            <div class="post-meta">
+                                                <a class={"post-category cat-" + getColorIndex(index + 1)} href="#">{item.category}</a>
+                                                <span class="post-date">{formatDate(index + 1)}</span>
+                                            </div>
+                                            <h3 class="post-title">
+                                                <p>
+                                                    <Link to={{ pathname: '/story/' + spaceToDash(item), state: item }}>
+                                                        {item.title}
+                                                    </Link>
+                                                </p>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+
+                            <div class="clearfix visible-md visible-lg"></div>
+
+                            <div class="col-md-12">
+                                <div class="section-row">
+                                    <a href="#">
+                                        <img class="img-responsive center-block" src="./../img/ad-2.jpg" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+
+                            {response && response.length > 6 && response.slice(3, 6).map((item, index) => (
+                                <div class="col-md-12">
+                                    <div class="post post-row">
+                                        <Link to={{ pathname: '/story/' + spaceToDash(item), state: { item } }}>
+                                            <a class="post-img" href=""><img src={getImage(index + 3)} alt=""></img></a>
+                                        </Link>
+                                        <div class="post-body">
+                                            <div class="post-meta">
+                                                <a class={"post-category cat-" + getColorIndex(index + 3)} href="#">{item.category}</a>
+                                                <span class="post-date">{formatDate(index + 3)}</span>
+                                            </div>
+                                            <h3 class="post-title">
+                                                <p>
+                                                    <Link to={{ pathname: '/story/' + spaceToDash(item), state: item }}>
+                                                        {item.title}
+                                                    </Link>
+                                                </p>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+
+                            <div class="col-md-12">
+                                <div class="section-row">
+                                    <button class="primary-button center-block">Load More</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
-
-        );
-    }
+        </div>
+    );
 }
 
 export default Categories; 
