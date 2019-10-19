@@ -9,7 +9,9 @@ class AppHeader extends React.Component {
           <div id="nav-fixed">
             <div class="container">
               <div class="nav-logo">
-                <a href="" class="logo"><img src="/img/logo.png" alt=""></img></a>
+              <Link to={{ pathname: '/' }}>
+                <a class="logo"><img src="/img/logo.png" alt=""></img></a>
+                      </Link>
               </div>
 
               <ul class="nav-menu nav navbar-nav">

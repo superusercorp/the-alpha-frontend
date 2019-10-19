@@ -87,11 +87,9 @@ function Categories() {
                                             <span class="post-date">{formatDate(0)}</span>
                                         </div>
                                         <h3 class="post-title">
-                                            <p>
                                                 <Link to={{ pathname: '/story/' + spaceToDash(article(0)), state: article(0) }}>
                                                     {getTitle(0)}
                                                 </Link>
-                                            </p>
                                         </h3>
                                     </div>
                                 </div>
@@ -109,11 +107,9 @@ function Categories() {
                                                 <span class="post-date">{formatDate(index + 1)}</span>
                                             </div>
                                             <h3 class="post-title">
-                                                <p>
                                                     <Link to={{ pathname: '/story/' + spaceToDash(item), state: item }}>
                                                         {item.title}
                                                     </Link>
-                                                </p>
                                             </h3>
                                         </div>
                                     </div>
@@ -142,11 +138,9 @@ function Categories() {
                                                 <span class="post-date">{formatDate(index + 3)}</span>
                                             </div>
                                             <h3 class="post-title">
-                                                <p>
                                                     <Link to={{ pathname: '/story/' + spaceToDash(item), state: item }}>
                                                         {item.title}
                                                     </Link>
-                                                </p>
                                             </h3>
                                         </div>
                                     </div>
