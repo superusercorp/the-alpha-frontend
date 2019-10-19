@@ -4,7 +4,6 @@ import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from
 class StoryDetail extends React.Component {
     render() {
         const article = Object.values(this.props.location.state)
-        console.log(JSON.stringify(article))
         const htmlBody = ReactHtmlParser(article[0].body);
 
         return (

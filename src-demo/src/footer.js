@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from 'react-router-dom'
 
 class AppFooter extends React.Component {
   render() {
@@ -9,11 +10,19 @@ class AppFooter extends React.Component {
                 <div class="col-md-5">
                     <div class="footer-widget">
                         <div class="footer-logo">
-                            <a href="index.html" class="logo"><img src="./img/logo.png" alt=""></img></a>
+                            <a href="" class="logo"><img src="./img/logo.png" alt=""></img></a>
                         </div>
                         <ul class="footer-nav">
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Advertisement</a></li>
+                        <li>        
+                                        <Link to={{ pathname: '/pr/' }}>
+                                           Privacy
+                                        </Link>
+                            </li>
+                            <li>        
+                                        <Link to={{ pathname: '/advertisement/' }}>
+                                           Advertisement
+                                        </Link>
+                            </li>
                         </ul>
                         <div class="footer-copyright">
                             <span>&copy; 
@@ -29,9 +38,19 @@ Copyright &copy; <script>document.write(new Date().toDateString());</script> All
                             <div class="footer-widget">
                                 <h3 class="footer-title">About Us</h3>
                                 <ul class="footer-links">
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="#">Join Us</a></li>
-                                    <li><a href="contact.html">Contacts</a></li>
+                                    <li> 
+                                        <Link to={{ pathname: '/about/' }}>
+                                           About
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to={{ pathname: '/joinus/' }}>
+                                           Join Us
+                                        </Link></li>
+                                    <li>
+                                        <Link to={{ pathname: '/contact/' }}>
+                                           Contact
+                                        </Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -39,10 +58,29 @@ Copyright &copy; <script>document.write(new Date().toDateString());</script> All
                             <div class="footer-widget">
                                 <h3 class="footer-title">Catagories</h3>
                                 <ul class="footer-links">
-                                    <li><a href="category.html">Judges</a></li>
-                                    <li><a href="category.html">Cases</a></li>
-                                    <li><a href="category.html">Attorneys</a></li>
-                                    <li><a href="category.html">News</a></li>
+                                    <li>
+                    <Link to={{ pathname: '/category/cases', state: "cases" }}>
+                        Cases
+                    </Link>
+
+                                    </li>
+                                    <li>
+                    <Link to={{ pathname: '/category/judges', state: "judges" }}>
+                         Judges
+                    </Link>
+                                    </li>
+                                    <li>
+                    <Link to={{ pathname: '/category/attorneys', state: "attorneys" }}>
+                        Attorneys
+                    </Link>
+
+                                    </li>
+                                    <li>
+                    <Link to={{ pathname: '/category/exonerations', state: "exonerations" }}>
+                        Exonerations
+                    </Link>
+
+                                    </li>
                                 </ul>
                             </div>
                         </div>

@@ -1,19 +1,15 @@
 import * as React from "react";
-import { Route, Switch, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class AppHeader extends React.Component {
-  
   render() {
-    const { category } = "osadf"
-
     return (
-
       <header id="header">
         <div id="nav">
           <div id="nav-fixed">
             <div class="container">
               <div class="nav-logo">
-                <a href="index.html" class="logo"><img src="/img/logo.png" alt=""></img></a>
+                <a href="" class="logo"><img src="/img/logo.png" alt=""></img></a>
               </div>
 
               <ul class="nav-menu nav navbar-nav">
@@ -50,14 +46,11 @@ class AppHeader extends React.Component {
                 </div>
               </div>
 
-
-
             </div>
           </div>
         </div>
 
       </header >
-
     );
   }
 }
