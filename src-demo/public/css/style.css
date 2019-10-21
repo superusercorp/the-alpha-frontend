@@ -230,8 +230,8 @@ RESPONSIVE
          transform:translateY(0%);
     }
      to {
-         -webkit-transform:translateY(-100%);
-         transform:translateY(-100%);
+         -webkit-transform:translateY(-15%);
+         transform:translateY(-15%);
     }
 }
  @keyframes slide-up {
@@ -240,8 +240,8 @@ RESPONSIVE
          transform:translateY(0%);
     }
      to {
-         -webkit-transform:translateY(-100%);
-         transform:translateY(-100%);
+         -webkit-transform:translateY(-15%);
+         transform:translateY(-15%);
     }
 }
  #nav .container {
