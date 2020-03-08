@@ -19,6 +19,14 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [{"source": "**", "destination": "/index.html" }],
+    "redirects": [
+      {
+        "source": "/story/*",
+        "destination": "https://www.jetpackdaily.com/",
+        "type": 301
+      }
     ]
   },
   "storage": {

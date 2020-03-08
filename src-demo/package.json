@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "3.3.7",
-    "html-react-parser": "^0.9.1",
+    "html-react-parser": "^0.9.2",
     "ra-input-rich-text": "^2.3.0",
     "react": "^16.5.1",
     "react-admin-firebase": "^0.8.4",
@@ -15,6 +15,7 @@
     "react-scripts": "1.1.5",
     "react-share": "^3.0.1",
     "react-sharingbuttons": "^1.0.0",
+    "react-social-sharing": "^3.0.1",
     "redux-saga": "^0.16.0",
     "source-map-loader": "^0.2.4"
   },
