@@ -51,7 +51,7 @@ class AppHeader extends React.Component {
             </div>
           </div>
         </div>
-
+        
       </header >
     );
   }
