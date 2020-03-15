@@ -7,6 +7,7 @@ import { TwitterShareButton, FacebookShareButton, EmailShareButton, TwitterIcon,
 import {
     useLocation,
 } from "react-router-dom";
+import { blockParams } from "handlebars";
 
 
 function formatDate(createDate) {
@@ -25,15 +26,35 @@ function formatDate(createDate) {
     }
 }
 
+function formatAuthor(author) {
+    let auth = "";
+    if (author !== undefined) {
+        auth = author.match(/.*?(?=@|$)/i)
+        if(auth == "fieldnation") {
+            return auth = "Field Nation"
+        }
+        else if(auth == "anthonyzappin")  {
+            return auth = "Anthony Zappin"
+        }
+        else if(auth == "brockfredin")  {
+           return auth = "Brock Fredin"
+        }
+    }
+    return auth;
+}
+
 const StoryDetail = (props) => {
+    console.log(props.location.state)
     const title = props.location.state.title
     const createDate = props.location.state.createdate
     const category = props.location.state.category
     const tagline = props.location.state.tagline
     const body = props.location.state.body
+    const author = props.location.state.createdby
     const image = props.location.state.file ? props.location.state.file.src : props.location.state.title
     let mapStr = "";
     let imageLocation = '../img/post-page.jpg'
+  
     let styleStr = "background-image: url('./img/post-page.jpg');"
     let height = {
         height: '270px',
@@ -64,6 +85,15 @@ const StoryDetail = (props) => {
         zIndex: '0'
     }
 
+    let adStyleStr = {
+        display: 'inline-block',
+        margin: 'author',
+    }
+
+    let paddingTopBig = {
+        paddingTop: '80px',
+      }
+
     let capitalize = {
         textTransform: 'capitalize'
     }
@@ -71,12 +101,13 @@ const StoryDetail = (props) => {
     JSON.stringify(parse(body).map((val, i, arr) => {
         if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
             mapStr += val.props.children != 'undefined' ? val.props.children : "";
-            return val.props.children
+            return mapStr;
         }
     }));
 
     return (
         <div>
+           
             <div id="post-header" class="page-header">
                 <div class="background-img" style={{ ...backgroundImage, ...height, ...paddingTop, ...paddingBottom, ...zIndex0}}>
                         <div class="container">
@@ -93,32 +124,79 @@ const StoryDetail = (props) => {
                 </div>
             </div>
 
+                             
+
             <div class="section">
+            
                 <div class="container">
+             
                     <div class="row">
+
+                   
+
                         <div class="col-md-8">
+
+                        
+
                             <div class="section-row sticky-container">
+
+                     
+
                                 <div class="main-post">
+
+                             
+
                                     <h3 style={{...h1PaddingTop, ...capitalize}}>{tagline}</h3>
+                                        <h5 class="post-date">By {formatAuthor(author)}</h5>
+                                        {/* <span class="post-date">By {formatAuthor(author)}</span> */}
+
                                     {/* <figure class="figure-img">
                                         <img class="img-responsive" src={image} alt="" height="800px" width="850px"></img>
                                         <figcaption>{tagline}</figcaption>
                                     </figure> */}
                                     {parse(mapStr)}
                                 </div>
+                             
                                 <div class="post-shares sticky-shares" style={h1PaddingTop}>
                                     <a href={"https://www.facebook.com/sharer/sharer.php?u=jetpackdaily.com" + '/story/' + title} target="_blank" class="share-facebook"><i class="fa fa-facebook" ></i></a>
                                     <a href={"https://twitter.com/share?url=http://www.jetpackdaily.com" + "/story/" + title + "&text=A JetPackDaily Story To Read!" + " " + title} target="_blank" class="share-twitter"><i class="fa fa-twitter"></i></a>
                                     <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this article http://www.jetpackdaily.com." title="Share by Email" target="_blank"><i class="fa fa-envelope"></i></a>
                                 </div>
-                            </div>
-                            <Ads />
+
+                             
+                            {/* <Ads /> */}
                         </div>
+                    
+                             
                     </div>
+                                 <div  class="aside-widget text-center" style={paddingTopBig}>
+                                    <a href="#" style={adStyleStr}>
+                                        <img class="img-responsive" src="../img/ad-1.jpg" alt=""/>
+                                    </a>
+                                </div>
+
+
+<div class="aside-widget">
+							<div class="section-title">
+								<h2>New Stories</h2>
+							</div>
+
+							<div class="post post-widget">
+								<a class="post-img" href="blog-post.html"><img src="../img/widget-1.jpg" alt=""/></a>
+								<div class="post-body">
+									<h3 class="post-title"><a href="blog-post.html">Tell-All: A Lawyers Story About Activist Judges</a></h3>
+								</div>
+							</div>
+
+							
+						</div>
+
                 </div>
             </div>
+        </div>
         </div>
     );
 }
 
 export default StoryDetail; 
+

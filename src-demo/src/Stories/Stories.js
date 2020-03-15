@@ -15,6 +15,7 @@ function Stories() {
 			.then(res => res.json())
 			.then(res => {
 				setResponse(res)
+				console.log(res)
 			})
 	}, [location.pathname]);
 
@@ -73,7 +74,6 @@ function Stories() {
 		<div class="section">
 			<div class="container">
 				<div class="row"></div>
-
 				{response && response.length > 6 && response.slice(0, 2).map((item, index) => (
 					<div class="col-md-6">
 						<div class="post post-thumb">
