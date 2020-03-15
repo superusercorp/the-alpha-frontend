@@ -4,18 +4,22 @@ import {
 	useLocation,
 } from "react-router-dom";
 
+import { store, useStore } from '../hookstore';
+
+store.state = 0;
+
 function Stories() {
 	let location = useLocation()
 	let cat = location.pathname.toString().split('/')[2]
 	const [response, setResponse] = useState([]);
+	const [globalResponse, setGlobalResponse] = useStore();
 
 	useEffect(() => {
-		console.log('New path: ', cat);
 		fetch('https://us-central1-thealphaposts.cloudfunctions.net/getLatestPosts')
 			.then(res => res.json())
 			.then(res => {
 				setResponse(res)
-				console.log(res)
+				setGlobalResponse(res)
 			})
 	}, [location.pathname]);
 

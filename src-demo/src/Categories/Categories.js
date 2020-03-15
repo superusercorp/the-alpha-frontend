@@ -3,6 +3,8 @@ import {
     Link,
     useLocation,
 } from "react-router-dom";
+import Ads from "../Ads/Ads.js"
+
 
 function Categories() {
     let location = useLocation()
@@ -40,9 +42,11 @@ function Categories() {
     }
 
     function getImage(indexx) {
+        let imageSrc = ""
         if (article(indexx) != undefined && article(indexx).file != undefined && article(indexx).file.src != undefined) {
             return article(indexx).file.src
         }
+        return imageSrc = "../img/post-2.jpg"
     }
 
     function getColorIndex(indexx) {
@@ -97,7 +101,7 @@ function Categories() {
 
                             {response && response.length > 6 && response.slice(1, 3).map((item, index) => (
                                 <div class="col-md-6">
-                                    <div class="post post-row">
+                                    <div class="post">
                                         <Link to={{ pathname: '/story/' + spaceToDash(item), state: { item } }}>
                                             <a class="post-img" href=""><img src={getImage(index + 1)} alt=""></img></a>
                                         </Link>
@@ -149,12 +153,13 @@ function Categories() {
 
                             <div class="col-md-12">
                                 <div class="section-row">
-                                    <button class="primary-button center-block">Load More</button>
+                                    {/* <button class="primary-button center-block">Load More</button> */}
                                 </div>
                             </div>
                         </div>
+                      
                     </div>
-
+                    <Ads /> 
                 </div>
             </div>
         </div>
