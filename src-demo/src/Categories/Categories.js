@@ -4,12 +4,13 @@ import {
     useLocation,
 } from "react-router-dom";
 import Ads from "../Ads/Ads.js"
-
+import parse from 'html-react-parser';
 
 function Categories() {
     let location = useLocation()
     let cat = location.pathname.toString().split('/')[2]
     const [response, setResponse] = useState([]);
+    let mapStr = "";
 
     useEffect(() => {
         console.log('New path: ', cat);
@@ -47,6 +48,23 @@ function Categories() {
             return article(indexx).file.src
         }
         return imageSrc = "../img/post-2.jpg"
+    }
+
+    // function cleanString (item) {
+    //     JSON.stringify(parse(mapStr).map((val, i, arr) => {
+    //         if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
+    //             mapStr += val.props.children != 'undefined' ? val.props.children : "";
+    //             return mapStr;
+    //         }
+    //     }));
+    // }
+
+    function getStartingText(item) {
+        if (item != undefined && item.body != undefined && item.body != "") {
+            let cleanStr = item.body.replace(/<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;|&gt;/g, "")
+            return cleanStr.slice(0, 30)
+        }
+        return "A great story to read if you have the time.  We are always pleased with you as a reader!"
     }
 
     function getColorIndex(indexx) {
@@ -146,6 +164,7 @@ function Categories() {
                                                         {item.title}
                                                     </Link>
                                             </h3>
+                                            <p>{getStartingText(item)}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -45,10 +45,12 @@ function Stories() {
 	}
 
 	function getImage(indexx) {
-		if (article(indexx) != undefined && article(indexx).file != undefined && article(indexx).file.src != undefined) {
-			return article(indexx).file.src
-		}
-	}
+        let imageSrc = ""
+        if (article(indexx) != undefined && article(indexx).file != undefined && article(indexx).file.src != undefined) {
+            return article(indexx).file.src
+        }
+        return imageSrc = "../img/post-2.jpg"
+    }
 
 	function getColorIndex(indexx) {
 		if (indexx !== undefined && article(indexx) !== undefined) {
@@ -74,10 +76,15 @@ function Stories() {
 		}
 	}
 
+	let margins = {
+        marginleft: '-15',
+        marginright: '-15'
+    }
+
 	return (
 		<div class="section">
 			<div class="container">
-				<div class="row"></div>
+				<div class="row" style={margins}></div>
 				{response && response.length > 6 && response.slice(0, 2).map((item, index) => (
 					<div class="col-md-6">
 						<div class="post post-thumb">

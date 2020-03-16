@@ -12,13 +12,10 @@ function Privacy() {
                                 <p>A privacy police here.</p>
                             </div>
                             <div class="post-shares sticky-shares">
-                                <a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
-                                <a href="#" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
-                                <a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-envelope"></i></a>
-                            </div>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=jetpackdaily.com" target="_blank" class="share-facebook"><i class="fa fa-facebook" ></i></a>
+                                    <a href="https://twitter.com/share?url=http://www.jetpackdaily.com" target="_blank" class="share-twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this article http://www.jetpackdaily.com." title="Share by Email" target="_blank"><i class="fa fa-envelope"></i></a>
+                                </div>
                         </div>
                     </div>
                 </div>
