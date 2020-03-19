@@ -85,36 +85,31 @@ const StoryDetail = (props) => {
         zIndex: '0'
     }
 
-    let adStyleStr = {
-        display: 'inline-block',
-        margin: 'author',
-    }
-
-    let paddingTopBig = {
-        paddingTop: '80px',
-    }
-
     let capitalize = {
         textTransform: 'capitalize'
     }
 
-    JSON.stringify(parse(body).map((val, i, arr) => {
-        if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
-            mapStr += val.props.children != 'undefined' ? val.props.children : "";
-            return mapStr;
-        }
-    }));
+    function getColorIndex(category) {
+            let catArr = ['popular', 'cases', 'exonerations', 'judges', 'attorneys',]
+            return catArr.indexOf(category)
+    }
+
+    // JSON.stringify(parse(body).map((val, i, arr) => {
+    //     if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
+    //         mapStr += val.props.children != 'undefined' ? val.props.children : "";
+    //         return mapStr;
+    //     }
+    // }));
 
     return (
         <div>
-
             <div id="post-header" class="page-header">
                 <div class="background-img" style={{ ...backgroundImage, ...height, ...paddingTop, ...paddingBottom, ...zIndex0 }}>
                     <div class="container">
                         <div class="row" style={rowPaddingTop}>
                             <div class="col-md-10">
                                 <div class="post-meta">
-                                    <a class="post-category cat-2" href="category.html" style={zIndex}>{category}</a>
+                                    <a class={"post-category cat-" + getColorIndex(category)} href="category.html" style={zIndex}>{category}</a>
                                     <span class="post-date" style={zIndex}>{formatDate(createDate)}</span>
                                 </div>
                                 <h1 class="post-title" style={zIndex}>{title}</h1>
@@ -124,39 +119,16 @@ const StoryDetail = (props) => {
                 </div>
             </div>
 
-
-
             <div class="section">
-
                 <div class="container">
-
                     <div class="row">
-
-
-
                         <div class="col-md-8">
-
-
-
                             <div class="section-row sticky-container">
-
-
-
                                 <div class="main-post">
-
-
-
                                     <h3 style={{ ...h1PaddingTop, ...capitalize }}>{tagline}</h3>
                                     <h5 class="post-date">By {formatAuthor(author)}</h5>
-                                    {/* <span class="post-date">By {formatAuthor(author)}</span> */}
-
-                                    {/* <figure class="figure-img">
-                                        <img class="img-responsive" src={image} alt="" height="800px" width="850px"></img>
-                                        <figcaption>{tagline}</figcaption>
-                                    </figure> */}
-                                    {parse(mapStr)}
+                                    {body}
                                 </div>
-
                                 <div class="post-shares sticky-shares" style={h1PaddingTop}>
                                     <a href={"https://www.facebook.com/sharer/sharer.php?u=jetpackdaily.com" + '/story/' + title} target="_blank" class="share-facebook"><i class="fa fa-facebook" ></i></a>
                                     <a href={"https://twitter.com/share?url=http://www.jetpackdaily.com" + "/story/" + title + "&text=A JetPackDaily Story To Read!" + " " + title} target="_blank" class="share-twitter"><i class="fa fa-twitter"></i></a>

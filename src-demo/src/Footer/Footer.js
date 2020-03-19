@@ -14,6 +14,11 @@ function AppFooter() {
         }
       }
 
+    function handleClick() {
+        setEmailField(newsLetter.value)
+        setIsSending(true)
+    }
+
     // function submitEmail()  {
     //     console.log("we were able to click " + isSending)
     //     if(emailField != "") {
@@ -43,12 +48,9 @@ function AppFooter() {
     
     useEffect(() => {
         if(emailField != "" && emailField != undefined) {
-            console.log("are we sending " + isSending)
-            console.log("email field is " + emailField)
             fetch("https://us-central1-thealphaposts.cloudfunctions.net/persistemail", options)
 			.then(res => res.json())
 			.then(res => {
-                console.log("did we add a newsletter user? " + res)
                 setIsSending(false)
             })
             .catch(error => console.log("the error response is " + error))
@@ -145,7 +147,7 @@ Copyright &copy; <script>document.write(new Date().toDateString());</script> All
                                 <div class="footer-newsletter">
                                     <form>
                                         <input onKeyPress={keyPressed} onChange={event => setEmailField(event.target.value)} id="newsletter" class="input" type="email" name="newsletter" placeholder="Enter your email"></input>
-                                        <button class="newsletter-btn"><i class="fa fa-paper-plane"></i></button>
+                                        <button onClick={handleClick} class="newsletter-btn"><i class="fa fa-paper-plane"></i></button>
                                     </form>
                                 </div>
                                 <ul class="footer-social">

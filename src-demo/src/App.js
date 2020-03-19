@@ -2,7 +2,7 @@ import * as React from "react";
 // import { PostList, PostShow, PostCreate, PostEdit } from "./posts";
 // import { UserList, UserShow, UserCreate, UserEdit } from "./users";
 import { Admin, Resource } from "react-admin";
-import AppHeader from "./header"
+import AppHeader from "./Header/Header.js"
 import Stories from "./Stories/Stories.js"
 import StoryDetail from './StoryDetail/StoryDetail.js'
 import AppHtml from "./html"

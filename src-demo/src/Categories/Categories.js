@@ -70,7 +70,7 @@ function Categories() {
     function getColorIndex(indexx) {
         if (indexx !== undefined && article(indexx) !== undefined) {
             let cat = article(indexx).category
-            let catArr = ['foo', 'cases', 'exonerations', 'attorneys', 'judges',]
+            let catArr = ['popular', 'cases', 'exonerations', 'judges', 'attorneys',]
             return catArr.indexOf(cat)
         }
     }

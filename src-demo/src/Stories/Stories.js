@@ -55,7 +55,7 @@ function Stories() {
 	function getColorIndex(indexx) {
 		if (indexx !== undefined && article(indexx) !== undefined) {
 			let cat = article(indexx).category
-			let catArr = ['foo', 'cases', 'exonerations', 'attorneys', 'judges',]
+			let catArr = ['popular', 'cases', 'exonerations', 'judges', 'attorneys',]
 			return catArr.indexOf(cat)
 		}
 	}
@@ -121,7 +121,7 @@ function Stories() {
                              </Link>
 							<div class="post-body">
 								<div class="post-meta">
-								<a class={"post-category cat-" + getColorIndex(index + 2)} href="#">{item.category}</a>
+								<a class={"post-category cat-" + getColorIndex(index)} href="#">{item.category}</a>
                                                 <span class="post-date">{formatDate(index + 2)}</span>
 								</div>
 								<h3 class="post-title">

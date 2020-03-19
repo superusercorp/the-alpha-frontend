@@ -1,5 +1,5 @@
 import * as React from "react";
-import AppHeader from "./header"
+import AppHeader from "./Header/Header.js"
 import Stories from "./Stories/Stories.js"
 import StoryDetail from "./StoryDetail/StoryDetail.js"
 import Category from "./Categories/Categories"
@@ -8,7 +8,7 @@ import Privacy from "./FooterSlugs/Privacy.js"
 import Advertisement from "./FooterSlugs/Advertisement.js"
 import JoinUs from "./FooterSlugs/JoinUs.js"
 import Contact from "./FooterSlugs/Contact.js"
-import AppFooter from "./footer"
+import AppFooter from "./Footer/Footer.js"
 import { Route, Switch } from 'react-router-dom'
 
 function AppHtml() {

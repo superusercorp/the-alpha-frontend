@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
-import AppHeader from './header';
+import AppHeader from './Header/Header';
 import { BrowserRouter as Router } from 'react-router-dom'
 // import registerServiceWorker from './registerServiceWorker';
 
