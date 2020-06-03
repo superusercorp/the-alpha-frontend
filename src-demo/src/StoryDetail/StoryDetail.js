@@ -44,7 +44,7 @@ function formatAuthor(author) {
 }
 
 const StoryDetail = (props) => {
-    console.log(props.location.state)
+    (props.location.state)
     const title = props.location.state.title
     const createDate = props.location.state.createdate
     const category = props.location.state.category
@@ -94,12 +94,12 @@ const StoryDetail = (props) => {
             return catArr.indexOf(category)
     }
 
-    // JSON.stringify(parse(body).map((val, i, arr) => {
-    //     if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
-    //         mapStr += val.props.children != 'undefined' ? val.props.children : "";
-    //         return mapStr;
-    //     }
-    // }));
+    JSON.stringify(parse(body).map((val, i, arr) => {
+        if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
+            mapStr += val.props.children != 'undefined' ? val.props.children : "";
+            return mapStr;
+        }
+    }));
 
     return (
         <div>
@@ -127,7 +127,7 @@ const StoryDetail = (props) => {
                                 <div class="main-post">
                                     <h3 style={{ ...h1PaddingTop, ...capitalize }}>{tagline}</h3>
                                     <h5 class="post-date">By {formatAuthor(author)}</h5>
-                                    {body}
+                                    {parse(mapStr)}
                                 </div>
                                 <div class="post-shares sticky-shares" style={h1PaddingTop}>
                                     <a href={"https://www.facebook.com/sharer/sharer.php?u=jetpackdaily.com" + '/story/' + title} target="_blank" class="share-facebook"><i class="fa fa-facebook" ></i></a>
