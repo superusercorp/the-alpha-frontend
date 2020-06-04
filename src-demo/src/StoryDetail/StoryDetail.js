@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from 'react';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import parse from 'html-react-parser';
 import Ads from "../Ads/Ads.js"
@@ -6,9 +6,10 @@ import { TwitterShareButton, FacebookShareButton, EmailShareButton, TwitterIcon,
 // import { Facebook, Twitter } from 'react-sharingbuttons'
 import {
     useLocation,
+    useParams
 } from "react-router-dom";
 import { blockParams } from "handlebars";
-
+import { store, useStore } from '../hookstore';
 
 function formatDate(createDate) {
     if (createDate !== undefined) {
@@ -44,16 +45,47 @@ function formatAuthor(author) {
 }
 
 const StoryDetail = (props) => {
-    (props.location.state)
-    const title = props.location.state.title
-    const createDate = props.location.state.createdate
-    const category = props.location.state.category
-    const tagline = props.location.state.tagline
-    const body = props.location.state.body
-    const author = props.location.state.createdby
-    const image = props.location.state.file ? props.location.state.file.src : props.location.state.title
+    let storyTitle = useParams();
+    let fullTitle = ""
+	let location = useLocation()
+    const [response, setResponse] = useState([]);
+    const [ globalResponse ] = useStore([]);
+    let isFreshRequest = false; 
+    const testState = props.location.state ? props.location.state.title : isFreshRequest = true
+    let title = props.location.state ? props.location.state.title : ""
+    let createDate = props.location.state ? props.location.state.createdate : ""
+    let category = props.location.state ? props.location.state.category : ""
+    let tagline = props.location.state ? props.location.state.tagline : ""
+    let body = props.location.state ? props.location.state.body : ""
+    let author = props.location.state ? props.location.state.createdby : ""
+    let image = props.location.state ? props.location.state.file.src : ""
     let mapStr = "";
     let imageLocation = '../img/post-page.jpg'
+
+    if(storyTitle.articleTitle) {
+        fullTitle = storyTitle.articleTitle.split("-").join(" ")
+    }
+
+    if(isFreshRequest) {
+        useEffect(() => {
+            fetch('https://us-central1-thealphaposts.cloudfunctions.net/getArticle?title=' + fullTitle)
+                .then(res => res.json())
+                .then(res => {
+                    setResponse(res)
+                })
+        }, [location.pathname]);
+    }
+
+    function setArticle() {
+        if(response[0] != undefined) {
+            author = response[0].createdby
+            tagline = response[0].tagline
+            body = response[0].body
+            createDate = response[0].createDate
+            category = response[0].category
+            title = response[0].title
+        }
+    }
 
     let styleStr = "background-image: url('./img/post-page.jpg');"
     let height = {
@@ -94,12 +126,14 @@ const StoryDetail = (props) => {
             return catArr.indexOf(category)
     }
 
-    JSON.stringify(parse(body).map((val, i, arr) => {
-        if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
-            mapStr += val.props.children != 'undefined' ? val.props.children : "";
-            return mapStr;
-        }
-    }));
+    if(body != undefined ) {
+        JSON.stringify(parse(body).map((val, i, arr) => {
+            if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
+                mapStr += val.props.children != 'undefined' ? val.props.children : "";
+                return mapStr;
+            }
+        }));
+    }
 
     return (
         <div>
