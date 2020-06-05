@@ -49,7 +49,6 @@ const StoryDetail = (props) => {
     let fullTitle = ""
 	let location = useLocation()
     const [response, setResponse] = useState([]);
-    const [ globalResponse ] = useStore([]);
     let isFreshRequest = false; 
     const testState = props.location.state ? props.location.state.title : isFreshRequest = true
     let title = props.location.state ? props.location.state.title : ""
@@ -71,6 +70,7 @@ const StoryDetail = (props) => {
     }
 
     console.log(isFreshRequest + " NASHVILE")
+    const [globalResponse, setGlobalResponse] = useStore()
 
     if(isFreshRequest) {
         useEffect(() => {
@@ -78,13 +78,14 @@ const StoryDetail = (props) => {
                 .then(res => res.json())
                 .then(res => {
                     setResponse(res)
+                    setGlobalResponse(res)
                 })
         }, [location.pathname]);
         setArticle()
     }
 
     function setArticle() {
-        if(response[0] != undefined) {
+        if(isFreshRequest && response[0] != undefined) {
             author = response[0].createdby
             tagline = response[0].tagline
             body = response[0].body
@@ -134,7 +135,7 @@ const StoryDetail = (props) => {
             return catArr.indexOf(category)
     }
 
-    if(body != undefined) {
+    if(body != undefined && body.length != 0) {
         console.log("BODY IS " + body + "and length is " + body.length)
         JSON.stringify(parse(body).map((val, i, arr) => {
             if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
