@@ -58,9 +58,13 @@ const StoryDetail = (props) => {
     let tagline = props.location.state ? props.location.state.tagline : ""
     let body = props.location.state ? props.location.state.body : ""
     let author = props.location.state ? props.location.state.createdby : ""
-    let image = props.location.state ? props.location.state.file.src : ""
+    let image = ""
     let mapStr = "";
     let imageLocation = '../img/post-page.jpg'
+
+    // if(props.location.state && props.location.state.file && props.location.state.file.src) {
+    //     image = props.location.state.file.src;
+    // }
 
     if(storyTitle.articleTitle) {
         fullTitle = storyTitle.articleTitle.split("-").join(" ")
@@ -126,7 +130,7 @@ const StoryDetail = (props) => {
             return catArr.indexOf(category)
     }
 
-    if(body != undefined ) {
+    if(body != undefined && body.length > 4) {
         JSON.stringify(parse(body).map((val, i, arr) => {
             if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
                 mapStr += val.props.children != 'undefined' ? val.props.children : "";
