@@ -135,7 +135,7 @@ const StoryDetail = (props) => {
             return catArr.indexOf(category)
     }
 
-    if(body != undefined && body.length != 0) {
+    if(body != undefined && body.length != 0 && body.split(" " ).length > 10) {
         console.log("BODY IS " + body + "and length is " + body.length)
         JSON.stringify(parse(body).map((val, i, arr) => {
             if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
