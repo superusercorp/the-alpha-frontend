@@ -113,25 +113,25 @@ Copyright &copy; <script>document.write(new Date().toDateString());</script> All
                                         <h3 class="footer-title">Catagories</h3>
                                         <ul class="footer-links">
                                             <li>
-                                                <Link to={{ pathname: '/category/cases', state: "cases" }}>
-                                                    Cases
+                                                <Link to={{ pathname: '/category/law', state: "law" }}>
+                                                    Law
                     </Link>
 
                                             </li>
                                             <li>
-                                                <Link to={{ pathname: '/category/judges', state: "judges" }}>
-                                                    Judges
+                                                <Link to={{ pathname: '/category/technology', state: "technology" }}>
+                                                    Technology
                     </Link>
                                             </li>
                                             <li>
-                                                <Link to={{ pathname: '/category/attorneys', state: "attorneys" }}>
-                                                    Attorneys
+                                                <Link to={{ pathname: '/category/pandemic', state: "pandemic" }}>
+                                                    Pandemic
                     </Link>
 
                                             </li>
                                             <li>
-                                                <Link to={{ pathname: '/category/exonerations', state: "exonerations" }}>
-                                                    Exonerations
+                                                <Link to={{ pathname: '/category/finance', state: "finance" }}>
+                                                    Finance
                     </Link>
 
                                             </li>

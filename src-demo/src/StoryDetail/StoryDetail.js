@@ -126,11 +126,12 @@ const StoryDetail = (props) => {
     }
 
     function getColorIndex(category) {
-            let catArr = ['popular', 'cases', 'exonerations', 'judges', 'attorneys',]
+            // let catArr = ['popular', 'cases', 'exonerations', 'judges', 'attorneys']
+            let catArr = ['popular', 'law', 'technology',  'finance', 'pandemic']
             return catArr.indexOf(category)
     }
 
-    if(body != undefined && body.length > 4) {
+    if(body != undefined && body.split(" ").length > 10) {
         JSON.stringify(parse(body).map((val, i, arr) => {
             if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
                 mapStr += val.props.children != 'undefined' ? val.props.children : "";

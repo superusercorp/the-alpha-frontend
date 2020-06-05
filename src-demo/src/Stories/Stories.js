@@ -45,18 +45,17 @@ function Stories() {
 	}
 
 	function getImage(indexx) {
-        let imageSrc = ""
-        if (article(indexx) != undefined && article(indexx).file != undefined && article(indexx).file.src != undefined) {
-            return article(indexx).file.src
-        }
-        return imageSrc = "../img/post-2.jpg"
-    }
+		let imageSrc = ""
+		if (article(indexx) != undefined && article(indexx).file != undefined && article(indexx).file.src != undefined) {
+			return article(indexx).file.src
+		}
+		return imageSrc = "../img/post-2.jpg"
+	}
 
-	function getColorIndex(indexx) {
-		if (indexx !== undefined && article(indexx) !== undefined) {
-			let cat = article(indexx).category
-			let catArr = ['popular', 'cases', 'exonerations', 'judges', 'attorneys',]
-			return catArr.indexOf(cat)
+	function getColorIndex(item) {
+		if (item !== undefined && item !== 0) {
+			let catArr = ['popular', 'law', 'technology', 'finance', 'pandemic']
+			return catArr.indexOf(item.category)
 		}
 	}
 
@@ -77,9 +76,9 @@ function Stories() {
 	}
 
 	let margins = {
-        marginleft: '-15',
-        marginright: '-15'
-    }
+		marginleft: '-15',
+		marginright: '-15'
+	}
 
 	return (
 		<div class="section">
@@ -89,17 +88,17 @@ function Stories() {
 					<div class="col-md-6">
 						<div class="post post-thumb">
 							<Link to={{ pathname: '/story/' + spaceToDash(item), state: { item } }}>
-										<a class="post-img" href=""><img src={getImage(index)} alt=""></img></a>
-                             </Link>
+								<a class="post-img" href=""><img src={getImage(index)} alt=""></img></a>
+							</Link>
 							<div class="post-body">
 								<div class="post-meta">
-								<a class={"post-category cat-" + getColorIndex(index)} href="#">{item.category}</a>
-                                                <span class="post-date">{formatDate(index)}</span>
+									<a class={"post-category cat-" + getColorIndex(item)} href="#">{item.category}</a>
+									<span class="post-date">{formatDate(index)}</span>
 								</div>
 								<h3 class="post-title">
-                            		 <Link to={{ pathname: '/story/' + spaceToDash(item), state: item }}>
-													{item.title}
-									 </Link>
+									<Link to={{ pathname: '/story/' + spaceToDash(item), state: item }}>
+										{item.title}
+									</Link>
 								</h3>
 							</div>
 						</div>
@@ -115,23 +114,23 @@ function Stories() {
 
 					{response && response.length > 6 && response.slice(3, 6).map((item, index) => (
 						<div class="col-md-4">
-						<div class="post">
-							<Link to={{ pathname: '/story/' + spaceToDash(item), state: { item } }}>
-										<a class="post-img" href=""><img src={getImage(index + 2)} alt=""></img></a>
-                             </Link>
-							<div class="post-body">
-								<div class="post-meta">
-								<a class={"post-category cat-" + getColorIndex(index)} href="#">{item.category}</a>
-                                                <span class="post-date">{formatDate(index + 2)}</span>
+							<div class="post">
+								<Link to={{ pathname: '/story/' + spaceToDash(item), state: { item } }}>
+									<a class="post-img" href=""><img src={getImage(index + 2)} alt=""></img></a>
+								</Link>
+								<div class="post-body">
+									<div class="post-meta">
+										<a class={"post-category cat-" + getColorIndex(item)} href="#">{item.category}</a>
+										<span class="post-date">{formatDate(index + 2)}</span>
+									</div>
+									<h3 class="post-title">
+										<Link to={{ pathname: '/story/' + spaceToDash(item), state: item }}>
+											{item.title}
+										</Link>
+									</h3>
 								</div>
-								<h3 class="post-title">
-                            		 <Link to={{ pathname: '/story/' + spaceToDash(item), state: item }}>
-													{item.title}
-									 </Link>
-								</h3>
 							</div>
 						</div>
-					</div>
 					))}
 
 					<div class="clearfix visible-md visible-lg"></div>

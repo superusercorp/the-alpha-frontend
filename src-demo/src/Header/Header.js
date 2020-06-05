@@ -50,23 +50,23 @@ function AppHeader() {
                 Popular
                       </Link></li>
               <li class="cat-1">
-                <Link to={{ pathname: '/category/cases', state: "cases" }}>
-                  Cases
+                <Link to={{ pathname: '/category/law', state: "law" }}>
+                  Law
                       </Link>
               </li>
               <li class="cat-2" >
-                <Link to={{ pathname: '/category/exonerations', state: "exonerations" }}>
-                  Exonerations
+                <Link to={{ pathname: '/category/technology', state: "technology" }}>
+                  Technology
                       </Link>
               </li>
               <li class="cat-3">
-                <Link to={{ pathname: '/category/judges', state: "judges" }}>
-                  Judges
+                <Link to={{ pathname: '/category/pandemic', state: "pandemic" }}>
+                  Pandemic
                       </Link>
               </li>
               <li class="cat-4">
-                <Link to={{ pathname: '/category/attorneys', state: "attorneys" }}>
-                  Attorneys
+                <Link to={{ pathname: '/category/finance', state: "finance" }}>
+                  Finance
                     </Link>
               </li>
             </ul>
