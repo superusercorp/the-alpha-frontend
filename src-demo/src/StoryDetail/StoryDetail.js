@@ -70,6 +70,8 @@ const StoryDetail = (props) => {
         fullTitle = storyTitle.articleTitle.split("-").join(" ")
     }
 
+    console.log(isFreshRequest + " NASHVILE")
+
     if(isFreshRequest) {
         useEffect(() => {
             fetch('https://us-central1-thealphaposts.cloudfunctions.net/getArticle?title=' + fullTitle)
@@ -78,6 +80,7 @@ const StoryDetail = (props) => {
                     setResponse(res)
                 })
         }, [location.pathname]);
+        setArticle()
     }
 
     function setArticle() {
@@ -131,7 +134,8 @@ const StoryDetail = (props) => {
             return catArr.indexOf(category)
     }
 
-    if(body != undefined && body.split(" ").length > 10) {
+    if(body != undefined) {
+        console.log("BODY IS " + body + "and length is " + body.length)
         JSON.stringify(parse(body).map((val, i, arr) => {
             if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
                 mapStr += val.props.children != 'undefined' ? val.props.children : "";
