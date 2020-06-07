@@ -68,21 +68,16 @@ const StoryDetail = (props) => {
     if(storyTitle.articleTitle) {
         fullTitle = storyTitle.articleTitle.split("-").join(" ")
     }
-
-    console.log(isFreshRequest + " NASHVILE")
-    const [globalResponse, setGlobalResponse] = useStore()
-
-    if(isFreshRequest) {
-        useEffect(() => {
-            fetch('https://us-central1-thealphaposts.cloudfunctions.net/getArticle?title=' + fullTitle)
-                .then(res => res.json())
-                .then(res => {
-                    setResponse(res)
-                    setGlobalResponse(res)
-                })
-        }, [location.pathname]);
-        setArticle()
-    }
+    
+    useEffect(() => {
+        fetch('https://us-central1-thealphaposts.cloudfunctions.net/getArticle?title=' + fullTitle)
+            .then(res => res.json())
+            .then(res => {
+                setResponse(res)
+                setGlobalResponse(res)
+            })
+    }, [location.pathname]);
+    setArticle()
 
     function setArticle() {
         if(isFreshRequest && response[0] != undefined) {

@@ -45,20 +45,16 @@ function Ads() {
     }
 
     const [globalResponse, setGlobalResponse] = useStore()
-    console.log("do we have global state " + globalResponse)
-    let isFresh = globalResponse > 4 ? false : true
+    // let isFresh = globalResponse > 4 ? false : true
 
-    if(isFresh) {
-        console.log("IS FRESH")
-        useEffect(() => {
-            fetch('https://us-central1-thealphaposts.cloudfunctions.net/getLatestPosts')
-                .then(res => res.json())
-                .then(res => {
-                    setGlobalResponse(res)
-                })
-        }, []);
-    }
-    
+    useEffect(() => {
+        fetch('https://us-central1-thealphaposts.cloudfunctions.net/getLatestPosts')
+            .then(res => res.json())
+            .then(res => {
+                setGlobalResponse(res)
+            })
+    }, []);
+
     return (
         <div class="col-md-4">
             <div>
