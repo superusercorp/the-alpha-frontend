@@ -41,11 +41,13 @@ function AppHeader() {
           <div class="container">
             <div class="nav-logo">
               <Link to={{ pathname: '/' }}>
-                <a class="logo"><img src="/img/logo.png" alt=""></img></a>
+                <a class="logo"><img src="/img/logo4.png" alt=""></img></a>
               </Link>
             </div>
             <ul class="nav-menu nav navbar-nav">
-              <li><a href="">News</a></li>
+            <li>  <Link to={{ pathname: '/category/news', state: "news" }}>
+                News
+                      </Link></li>
               <li>  <Link to={{ pathname: '/category/popular', state: "popular" }}>
                 Popular
                       </Link></li>

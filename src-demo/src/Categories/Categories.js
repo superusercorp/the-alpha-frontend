@@ -71,6 +71,9 @@ function Categories() {
         if (indexx !== undefined && article(indexx) !== undefined) {
             let cat = article(indexx).category
             // let catArr = ['popular', 'cases', 'exonerations', 'judges', 'attorneys']
+            if(cat == "news") {
+                return 0;
+            }
             let catArr = ['popular', 'law', 'technology',  'finance', 'pandemic']
             return catArr.indexOf(cat)
         }

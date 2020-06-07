@@ -68,7 +68,9 @@ const StoryDetail = (props) => {
     if(storyTitle.articleTitle) {
         fullTitle = storyTitle.articleTitle.split("-").join(" ")
     }
-    
+
+    const [globalResponse, setGlobalResponse] = useStore()
+
     useEffect(() => {
         fetch('https://us-central1-thealphaposts.cloudfunctions.net/getArticle?title=' + fullTitle)
             .then(res => res.json())
@@ -126,6 +128,9 @@ const StoryDetail = (props) => {
 
     function getColorIndex(category) {
             // let catArr = ['popular', 'cases', 'exonerations', 'judges', 'attorneys']
+            if(category == "news") {
+                return 0
+            }
             let catArr = ['popular', 'law', 'technology',  'finance', 'pandemic']
             return catArr.indexOf(category)
     }
