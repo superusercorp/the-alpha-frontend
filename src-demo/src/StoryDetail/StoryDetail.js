@@ -11,6 +11,8 @@ import {
 import { blockParams } from "handlebars";
 import { store, useStore } from '../hookstore';
 
+console.log("GEAR GEAR")
+
 function formatDate(createDate) {
     if (createDate !== undefined) {
         let monthArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
@@ -28,26 +30,35 @@ function formatDate(createDate) {
 }
 
 function formatAuthor(author) {
-    let auth = "";
+    // let auth = "";
     if (author !== undefined) {
-        auth = author.match(/.*?(?=@|$)/i)
-        if (auth == "fieldnation") {
-            return auth = "Field Nation"
+        // auth = author.match(/.*?(?=@|$)/i)
+        if (author == "MjqBABHOYvwMoQvhsK6S") {
+            return author = "Rachel Huxley"
         }
-        else if (auth == "anthonyzappin") {
-            return auth = "Anthony Zappin"
+        else if (author == "7mnn0Kd9AZaxRA0vIcHb") {
+            return author = "Field Nation"
         }
-        else if (auth == "brockfredin") {
-            return auth = "Brock Fredin"
+        else if (author == "") {
+            return author = "Protest Press"
         }
+    
+        //     return auth = "Field Nation"
+        // }
+        // else if (auth == "anthonyzappin") {
+        //     return auth = "Anthony Zappin"
+        // }
+        // else if (auth == "brockfredin") {
+        //     return auth = "Brock Fredin"
+        // }
     }
-    return auth;
+    return author;
 }
 
 const StoryDetail = (props) => {
     let storyTitle = useParams();
     let fullTitle = ""
-	let location = useLocation()
+    let location = useLocation()
     const [response, setResponse] = useState([]);
     let isFreshRequest = false; 
     const testState = props.location.state ? props.location.state.title : isFreshRequest = true
@@ -57,22 +68,32 @@ const StoryDetail = (props) => {
     let tagline = props.location.state ? props.location.state.tagline : ""
     let body = props.location.state ? props.location.state.body : ""
     let author = props.location.state ? props.location.state.createdby : ""
+    let userId = props.location.state ? props.location.state.user_id : ""
     let image = ""
     let mapStr = "";
     let imageLocation = '../img/post-page.jpg'
+
 
     // if(props.location.state && props.location.state.file && props.location.state.file.src) {
     //     image = props.location.state.file.src;
     // }
 
     if(storyTitle.articleTitle) {
-        fullTitle = storyTitle.articleTitle.split("-").join(" ")
+        fullTitle = storyTitle.articleTitle.split("-").join(" ").replace(/(?:\s*-\s*)+|\s{2,}/g, ' - ')
     }
+
+    function titleCase(str) {
+        str = str.toLowerCase().split(' ');
+        for (var i = 0; i < str.length; i++) {
+          str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+        }
+        return str.join(' ');
+      }
 
     const [globalResponse, setGlobalResponse] = useStore()
 
     useEffect(() => {
-        fetch('https://us-central1-thealphaposts.cloudfunctions.net/getArticle?title=' + fullTitle)
+        fetch('https://us-central1-thealphaposts.cloudfunctions.net/getArticle?title=' + titleCase(fullTitle))
             .then(res => res.json())
             .then(res => {
                 setResponse(res)
@@ -89,6 +110,7 @@ const StoryDetail = (props) => {
             createDate = response[0].createDate
             category = response[0].category
             title = response[0].title
+            userId = response[0].user_id
         }
     }
 
@@ -170,7 +192,7 @@ const StoryDetail = (props) => {
                             <div class="section-row sticky-container">
                                 <div class="main-post">
                                     <h3 style={{ ...h1PaddingTop, ...capitalize }}>{tagline}</h3>
-                                    <h5 class="post-date">By {formatAuthor(author)}</h5>
+                                    <h5 class="post-date">By {formatAuthor(userId)}</h5>
                                     {parse(mapStr)}
                                 </div>
                                 <div class="post-shares sticky-shares" style={h1PaddingTop}>
@@ -189,4 +211,5 @@ const StoryDetail = (props) => {
 }
 
 export default StoryDetail;
+
 
