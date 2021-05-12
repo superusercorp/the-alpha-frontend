@@ -88,9 +88,9 @@ function AppHeader() {
         <div id="nav-aside">
           <div class="section-row">
             <ul class="nav-aside-menu">
-              <li><a href="http://www.jetpackdaily.com">Home</a></li>
-              <li>  <Link to={{ pathname: '/aboutus/' }}>
-                About Us
+              <li><a href="http://www.protestpress.com">Home</a></li>
+              <li>  <Link to={{ pathname: '/about/' }}>
+                About Protest Press
                                         </Link></li>
               <li>  <Link to={{ pathname: '/joinus/' }}>
                 Join Us
@@ -120,8 +120,8 @@ function AppHeader() {
           <div class="section-row">
             <h3>Follow us</h3>
             <ul class="nav-aside-social">
-              <li><a href="https://www.facebook.com/sharer/sharer.php?u=jetpackdaily.com"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="https://twitter.com/share?url=http://www.jetpackdaily.com"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=protestpress.com"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="https://twitter.com/share?url=http://www.protestpress.com"><i class="fa fa-twitter"></i></a></li>
               <li><a href=""><i class="fa fa-google-plus"></i></a></li>
               <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
             </ul>

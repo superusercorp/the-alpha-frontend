@@ -11,8 +11,6 @@ import {
 import { blockParams } from "handlebars";
 import { store, useStore } from '../hookstore';
 
-console.log("GEAR GEAR")
-
 function formatDate(createDate) {
     if (createDate !== undefined) {
         let monthArr = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
@@ -69,7 +67,7 @@ const StoryDetail = (props) => {
     let body = props.location.state ? props.location.state.body : ""
     let author = props.location.state ? props.location.state.createdby : ""
     let userId = props.location.state ? props.location.state.user_id : ""
-    let image = ""
+    let image = props.location.state.file ? props.location.state.file.src : ""
     let mapStr = "";
     let imageLocation = '../img/post-page.jpg'
 
@@ -111,6 +109,7 @@ const StoryDetail = (props) => {
             category = response[0].category
             title = response[0].title
             userId = response[0].user_id
+            image = response[0].file ? response[0].file.src : ""
         }
     }
 
@@ -157,15 +156,29 @@ const StoryDetail = (props) => {
             return catArr.indexOf(category)
     }
 
+    function sleep(seconds) {
+        var e = new Date().getTime() + (seconds * 1000);
+        while (new Date().getTime() <= e) {}
+    }
+
+    function createMarkup() {
+        return {__html: body};
+      }
+
     if(body != undefined && body.length != 0 && body.split(" " ).length > 10) {
         console.log("BODY IS " + body + "and length is " + body.length)
-        JSON.stringify(parse(body).map((val, i, arr) => {
-            if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
-                mapStr += val.props.children != 'undefined' ? val.props.children : "";
-                return mapStr;
-            }
-        }));
+        mapStr = body 
+        // return mapStr
+        // JSON.stringify(body.map((val, i, arr) => {
+        //     if (val.props !== null || 'undefined' && val.props.children !== null || 'undefined') {
+        //         mapStr += val.props.children != 'undefined' ? val.props.children : "";
+        //         console.log("163 " + mapStr)
+        //         return mapStr;
+        //     }
+        // }));
     }
+
+
 
     return (
         <div>
@@ -190,15 +203,19 @@ const StoryDetail = (props) => {
                     <div class="row">
                         <div class="col-md-8">
                             <div class="section-row sticky-container">
-                                <div class="main-post">
+                                <div class="main-post" >
                                     <h3 style={{ ...h1PaddingTop, ...capitalize }}>{tagline}</h3>
-                                    <h5 class="post-date">By {formatAuthor(userId)}</h5>
-                                    {parse(mapStr)}
+                                     <h5 class="post-date">By {formatAuthor(userId)}</h5>
+                                     {image.length > 0 &&
+                                         <img src={image}></img>
+                                     }
+                                     <p></p>
+                                    {parse(body)}
                                 </div>
                                 <div class="post-shares sticky-shares" style={h1PaddingTop}>
-                                    <a href={"https://www.facebook.com/sharer/sharer.php?u=jetpackdaily.com" + '/story/' + title} target="_blank" class="share-facebook"><i class="fa fa-facebook" ></i></a>
-                                    <a href={"https://twitter.com/share?url=http://www.jetpackdaily.com" + "/story/" + title + "&text=A JetPackDaily Story To Read!" + " " + title} target="_blank" class="share-twitter"><i class="fa fa-twitter"></i></a>
-                                    <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this article http://www.jetpackdaily.com." title="Share by Email" target="_blank"><i class="fa fa-envelope"></i></a>
+                                    <a href={"https://www.facebook.com/sharer/sharer.php?u=protestpress.com" + '/story/' + title} target="_blank" class="share-facebook"><i class="fa fa-facebook" ></i></a>
+                                    <a href={"https://twitter.com/share?url=http://www.protestpress.com" + "/story/" + title + "&text=A Protest Press Story To Read!" + " " + title} target="_blank" class="share-twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this article http://www.protestpress.com." title="Share by Email" target="_blank"><i class="fa fa-envelope"></i></a>
                                 </div>
                             </div>
                         </div>

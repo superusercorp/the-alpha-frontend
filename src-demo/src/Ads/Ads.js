@@ -14,7 +14,6 @@ function spaceToDash(strInput) {
 }
 
 function tagOrTitle(item) {
-    console.log("booya" + item)
     let str = "" 
     if (item.tagline != undefined && item.tagline != "") {
         str = item.tagline; 

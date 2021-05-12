@@ -80,7 +80,7 @@ function AppFooter() {
                                 </ul>
                                 <div class="footer-copyright">
                                     <span>&copy;
-Copyright &copy; <script>document.write(new Date().toDateString());</script> All rights reserved | This template is made with <i class="fa fa-thumbs-down" aria-hidden="true"></i> by <a href="https://www.youarepathetic.com" target="_blank">The Alpha</a>
+Copyright &copy; <script>document.write(new Date().toDateString());</script> All rights reserved | This template is made with <i class="fa fa-thumbs-down" aria-hidden="true"></i> by <a href="https://www.protestpress.com" target="_blank">Protest Press</a>
                                     </span>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@ Copyright &copy; <script>document.write(new Date().toDateString());</script> All
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="footer-widget">
-                                        <h3 class="footer-title">About Us</h3>
+                                        <h3 class="footer-title">About Protest Press</h3>
                                         <ul class="footer-links">
                                             <li>
                                                 <Link to={{ pathname: '/about/' }}>
@@ -151,8 +151,8 @@ Copyright &copy; <script>document.write(new Date().toDateString());</script> All
                                     </form>
                                 </div>
                                 <ul class="footer-social">
-                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=jetpackdaily.com"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="https://twitter.com/share?url=http://www.jetpackdaily.com"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=protestpress.com"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://twitter.com/share?url=http://www.protestpress.com"><i class="fa fa-twitter"></i></a></li>
                                     <li><a href=""><i class="fa fa-google-plus"></i></a></li>
                                     <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
                                 </ul>
