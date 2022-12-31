@@ -7,9 +7,9 @@
     "react": "^16.5.1",
     "react-admin-firebase": "^0.8.4",
     "react-dom": "^16.5.1",
-    "react-scripts": "1.1.5",
+    "react-scripts": "5.0.1",
     "redux-saga": "^0.16.0",
-    "source-map-loader": "^0.2.4"
+    "source-map-loader": "^4.0.1"
   },
   "homepage": "https://github.com/superusercorp/the-alpha-admin",
   "devDependencies": {
